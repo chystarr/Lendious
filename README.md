@@ -4,11 +4,14 @@
 - Have two terminals open
 - In one terminal:
 ```
+cp .env.example .env
+npm install
 npm run dev
 ```
 - In the other terminal:
 ```
 cd client
+npm install
 npm start
 ```
 
