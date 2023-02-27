@@ -1,5 +1,17 @@
 # Lendious
 
+## Instructions for running the app
+- Have two terminals open
+- In one terminal:
+```
+npm run dev
+```
+- In the other terminal:
+```
+cd client
+npm start
+```
+
 ## Stack
 
 > Node.js v16 LTS is recommended
