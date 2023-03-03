@@ -50,13 +50,8 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 
-	/*  User.associate = (models) => {
-		User.hasMany(models.Listings, {
-			foreignKey: 'owner_id',
-			as: 'owner_id',
-			allowNull: false
-		}); 
-	}; */ 
+	 User.associate = (models) => {
+	}; 
 
 	User.beforeSave((user, options) => {
 		if (user.password) {

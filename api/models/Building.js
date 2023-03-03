@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
 
 	Building.init(
 		{
+            building_id: {
+				type: DataTypes.INTEGER,
+				autoIncrement: true,
+				primaryKey: true,
+			},
 			name: {
 				type: DataTypes.STRING,
 				notEmpty: true,
