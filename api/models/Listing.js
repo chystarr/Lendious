@@ -57,7 +57,12 @@ module.exports = (sequelize, DataTypes) => {
         Listing.belongsTo(models.User, {
             foreignKey: "borrower_id",
             allowNull: true
-        });
+        }),
+
+        Listing.belongsTo(models.ItemType, {
+            foreignKey: "item_type",
+            allowNull: false
+        })
 	};
 
 	return Listing;
