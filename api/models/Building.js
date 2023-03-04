@@ -25,5 +25,9 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 
+	Building.associate = (models) =>{
+		Building.belongsToMany(models.User, {through: 'BuildingMembership'})
+	};
+
 	return Building;
 };
