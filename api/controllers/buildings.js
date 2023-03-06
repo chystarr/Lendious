@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  let {name} = req.body;
+  let { name } = req.body;
   Building.create({ name })
     .then((newBuilding) => {
       res.status(201).json(newBuilding);
