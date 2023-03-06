@@ -10,3 +10,5 @@ const { ItemType } = db;
 //
 // POST /api/buildings
 // Add a new item type
+
+module.exports = router;

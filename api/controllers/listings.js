@@ -16,3 +16,5 @@ const { Listing } = db;
 //
 // PATCH /api/listing/borrow
 // Borrow a listing
+
+module.exports = router;
