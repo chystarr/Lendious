@@ -10,6 +10,17 @@ const PORT = process.env.PORT;
 // this lets us parse 'application/json' content in http requests
 app.use(express.json());
 
+app.use(
+  expressSession({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // add http request logging to help us debug and audit app use
 const logFormat = process.env.NODE_ENV === "production" ? "combined" : "dev";
 app.use(morgan(logFormat));
