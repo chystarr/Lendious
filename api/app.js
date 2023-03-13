@@ -1,4 +1,5 @@
 const express = require("express");
+const expressSession = require("express-session");
 const morgan = require("morgan");
 const path = require("path");
 const db = require("./models");
