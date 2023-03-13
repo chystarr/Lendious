@@ -21,8 +21,17 @@ router.get("/", (req, res) => {
   Building.findAll({}).then((allBuildings) => res.json(allBuildings));
 });
 
+router.get("/:id/residents", async (req, res) => {
+  const { id } = req.params;
+  const buildingWithId = await Building.findByPk(id);
+  if (!buildingWithId) {
+    return res.sendStatus(404);
+  }
+  Building.findByPk(id, { include: User }).then(buildingInfo => res.json(buildingInfo.Users));
+});
+
 router.post("/", (req, res) => {
-  let { name } = req.body;
+  const { name } = req.body;
   Building.create({ name })
     .then((newBuilding) => {
       res.status(201).json(newBuilding);

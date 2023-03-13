@@ -21,6 +21,7 @@ router.get("/", (req, res) => {
   Listing.findAll({}).then((allListings) => res.json(allListings));
 });
 
+// should be from a certain building in addition to being of a certain type?
 /*
 router.get("/item-type/:id", async (req, res) => {
   const { id } = req.params;
