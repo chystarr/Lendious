@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import ListingsPage from "./pages/ListingsPage";
 import MyItemsPage from "./pages/MyItemsPage";
 import AboutPage from "./pages/AboutPage";
+import LendItemPage from "./pages/LendItemPage";
 
 import "./App.css";
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="/my-items" element={<MyItemsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/" element={<HomePage />} />
+            <Route path="/form/new" element={<LendItemPage/>} />
           </Routes>
         </div>
       </div>

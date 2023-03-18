@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 
 import ListingCard from "../components/ListingCard";
+import AddListingButton from "../components/AddListingButton";
 
 function ListingsPage() {
   return (
-    <div>
-      <p>This is the Listings page</p>
-      <p>You can view all the items that are available to borrow in your building here</p>
-      <p>Also, there will be a link to lend a new item</p>
-      <ListingCard />
-      <ListingCard />
+
+    <div className="container-fluid text-center">
+			<div className="row justify-content-center">
+        <AddListingButton/>
+        <ListingCard />
+        <ListingCard />
+      </div>
     </div>
   );
 }
