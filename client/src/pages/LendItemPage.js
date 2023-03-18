@@ -10,7 +10,9 @@ function LendItemPage() {
   const [rend, setREnd] = useState("");
   const [condition, setCondition] = useState("");
   const [descr, setDescr] = useState("");
-
+  
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (input) => e => {
     if (input === "name"){
@@ -28,10 +30,50 @@ function LendItemPage() {
     }
   }
 
+
+  {/*
+
+  fetch request made does not match the specified
+  console logs: /form/api/listings instead of just api/listings
+
+*/}
   const handleSubmit = async(event) => {
     event.preventDefault();
-  }
+    try{
+      let response = await fetch("api/listings", {
+        method:"POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+          {
+            "name": name,
+            "compensation" : compensation,
+            "range-start": rstart,
+            "range-end": rend,
+            "condition" : condition,
+            "item-description" : descr,
+            "building_id" : 1,
+            "item_type_id" : 1
+          }
+        ),
+      });
 
+      if (response.ok) {
+        setSuccess(true);
+      } else {
+        setError(true);
+      }
+
+    } catch(error){
+      console.error("Server error when creating lending", error);
+      setError(true);
+    }
+
+  };
+
+  if (success) return <Navigate to="/listings" />;
 
   return (
     <div className="container-fluid text-center">
