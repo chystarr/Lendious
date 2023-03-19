@@ -3,6 +3,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorAlert from "../components/ErrorAlert";
 import ListingCard from "../components/ListingCard";
 import AddListingButton from "../components/AddListingButton";
+import SearchBar from "../components/SearchBar";
 
 function ListingsPage() {
 
@@ -40,6 +41,7 @@ function ListingsPage() {
     <div className="container-fluid text-center">
 			<div className="row justify-content-center">
         <AddListingButton/>
+        <SearchBar/>
         {console.log(listings)}
         {listings.map((listing) => {
           return <ListingCard {...listing} key = {listing.id} />

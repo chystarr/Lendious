@@ -2,8 +2,8 @@ import React from "react";
 
 function ListingCard(props) {
   return (
-    <div className="col-10 col-md-8 col-lg-7">
-        <div className="card">
+    <div className="col-10 col-md-8 col-lg-7 mt-3">
+        <div className="card shadow">
           <div className="card-body">
             <h5 class="card-title">{props.name}</h5>
             <h6 class="card-subtitle mb-2 text-muted">{props.range_start.substring(0,10)} - {props.range_end.substring(0,10)}</h6>
