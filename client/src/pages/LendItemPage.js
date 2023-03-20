@@ -40,7 +40,7 @@ function LendItemPage() {
   const handleSubmit = async(event) => {
     event.preventDefault();
     try{
-      let response = await fetch("api/listings", {
+      let response = await fetch("/api/listings", {
         method:"POST",
         credentials: "include",
         headers: {
@@ -50,10 +50,10 @@ function LendItemPage() {
           {
             "name": name,
             "compensation" : compensation,
-            "range-start": rstart,
-            "range-end": rend,
+            "range_start": rstart,
+            "range_end": rend,
             "condition" : condition,
-            "item-description" : descr,
+            "item_description" : descr,
             "building_id" : 1,
             "item_type_id" : 1
           }
