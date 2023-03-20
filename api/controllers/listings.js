@@ -22,15 +22,14 @@ router.get("/", (req, res) => {
 });
 
 // should be from a certain building in addition to being of a certain type?
-/*
 router.get("/item-type/:id", async (req, res) => {
   const { id } = req.params;
   const typeWithId = await ItemType.findByPk(id);
   if (!typeWithId) {
     return res.sendStatus(404);
   }
+  Listing.findAll({where: {item_type_id: id}}).then(listingsWithType => res.json(listingsWithType));
 });
-*/
 
 // maybe modify this so that building_id has to be a param in the body
 // only allow user to do this if she's already a member of the building?
