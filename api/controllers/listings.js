@@ -36,7 +36,8 @@ router.get("/item-type/:id", async (req, res) => {
 router.post("/", (req, res) => {
   const { name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
   const lender_id = 1; // placeholder until user auth is added
-  Listing.create({ name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, item_type_id })
+  const borrower_id = 1; //placeholder
+  Listing.create({ name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, borrower_id, item_type_id })
   .then((newListing) => {
     res.status(201).json(newListing);
   })

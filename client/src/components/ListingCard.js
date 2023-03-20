@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-function ListingCard() {
+function ListingCard(props) {
   return (
-    <div>
-      <p>This is a listing card component</p>
+    <div className="col-10 col-md-8 col-lg-7 mt-3">
+        <div className="card shadow">
+          <div className="card-body">
+            <h5 class="card-title">{props.name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{props.range_start.substring(0,10)} - {props.range_end.substring(0,10)}</h6>
+            <p class="card-text">{props.item_description}</p>
+          </div>
+        </div>
     </div>
   );
 }
