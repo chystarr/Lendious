@@ -33,7 +33,7 @@ router.get("/item-type/:id", async (req, res) => {
 
 // maybe modify this so that building_id has to be a param in the body
 // only allow user to do this if she's already a member of the building?
-router.post("/", (req, res) => {
+router.post("/", passport.isAuthenticated(), (req, res) => {
   const { name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
   const lender_id = 1; // placeholder until user auth is added
   Listing.create({ name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, item_type_id })
@@ -45,7 +45,7 @@ router.post("/", (req, res) => {
   });
 });
 
-router.patch("/:id/borrow", async (req, res) => {
+router.patch("/:id/borrow", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const listingWithId = await Listing.findByPk(id);
   if (!listingWithId) {
