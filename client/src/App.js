@@ -6,6 +6,7 @@ import MyItemsPage from "./pages/MyItemsPage";
 import AboutPage from "./pages/AboutPage";
 import LendItemPage from "./pages/LendItemPage";
 import { AuthProvider } from "./context/AuthContext";
+import AuthButton from "./components/AuthButton";
 import "./App.css";
 
 function Navigation(props) {
@@ -33,6 +34,7 @@ function Navigation(props) {
           </li>
         </ul>
       </div>
+      <AuthButton/>
     </nav>
   );
 }
