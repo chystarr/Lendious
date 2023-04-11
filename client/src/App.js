@@ -7,6 +7,8 @@ import AboutPage from "./pages/AboutPage";
 import LendItemPage from "./pages/LendItemPage";
 import { AuthProvider } from "./context/AuthContext";
 import AuthButton from "./components/AuthButton";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
 import "./App.css";
 
 function Navigation(props) {
@@ -47,6 +49,8 @@ function App() {
         <div className="container-xl text-center">
           <div className="row justify-content-center">
             <Routes>
+              <Route path="/signup" element={<SignUpPage />} />
+							<Route path="/login" element={<LoginPage />} />
               <Route path="/listings" element={<ListingsPage />} />
               <Route path="/my-items" element={<MyItemsPage />} />
               <Route path="/about" element={<AboutPage />} />

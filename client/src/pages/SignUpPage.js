@@ -61,7 +61,7 @@ function SignUpPage() {
           <p style={{color: "hsl(217 10%, 50.8%)"}}>
             Sign-up and create an account 
             to easily <span className = "text-primary">lend</span> your not-in-use items and 
-            <span className = "text-primary">borrow</span> others in your apartment complex.
+             <span className = "text-primary"> borrow</span> others in your apartment complex.
           </p>
         </div>
 
