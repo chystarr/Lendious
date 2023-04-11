@@ -5,7 +5,7 @@ import ListingsPage from "./pages/ListingsPage";
 import MyItemsPage from "./pages/MyItemsPage";
 import AboutPage from "./pages/AboutPage";
 import LendItemPage from "./pages/LendItemPage";
-
+import { AuthProvider } from "./context/AuthContext";
 import "./App.css";
 
 function Navigation(props) {
@@ -39,20 +39,22 @@ function Navigation(props) {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navigation />
-      <div className="container-xl text-center">
-        <div className="row justify-content-center">
-          <Routes>
-            <Route path="/listings" element={<ListingsPage />} />
-            <Route path="/my-items" element={<MyItemsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/" element={<HomePage />} />
-            <Route path="/form/new" element={<LendItemPage/>} />
-          </Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <Navigation />
+        <div className="container-xl text-center">
+          <div className="row justify-content-center">
+            <Routes>
+              <Route path="/listings" element={<ListingsPage />} />
+              <Route path="/my-items" element={<MyItemsPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/form/new" element={<LendItemPage/>} />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
