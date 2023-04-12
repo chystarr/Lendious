@@ -10,6 +10,7 @@ function ListingsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [listings, setListings] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     async function getData() {
@@ -18,6 +19,7 @@ function ListingsPage() {
         let response = await fetch("/api/listings");
         let allListings = await response.json();
         setListings(allListings);
+        setSearchResults(allListings);
         setLoading(false);
 
       } catch (error){
@@ -36,16 +38,18 @@ function ListingsPage() {
   if(error) return <ErrorAlert details="Failed to fetch all listings" />;
   if(loading) return <LoadingSpinner/>;
 
+  const results = searchResults.map((listing) => {
+     return <ListingCard {...listing} key = {listing.id} />
+  })
 
+  const content = results?.length ? results : <p className="mt-3">No Matching Listings</p>
+  
   return (
     <div className="container-fluid text-center">
 			<div className="row justify-content-center">
         <AddListingButton/>
-        <SearchBar/>
-        {console.log(listings)}
-        {listings.map((listing) => {
-          return <ListingCard {...listing} key = {listing.id} />
-        })}
+        <SearchBar listings={listings} setSearchResults={setSearchResults}/>
+        {content}
       </div>
     </div>
   );
