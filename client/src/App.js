@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import "./App.css";
 import SignUpButton from "./components/SignUpButton";
+import PrivateRouteRequiresAuth from "./components/PrivateRouteRequiresAuth";
 
 function Navigation(props) {
   return (
@@ -54,11 +55,11 @@ function App() {
             <Routes>
               <Route path="/signup" element={<SignUpPage />} />
 							<Route path="/login" element={<LoginPage />} />
-              <Route path="/listings" element={<ListingsPage />} />
-              <Route path="/my-items" element={<MyItemsPage />} />
+              <Route path="/listings" element={<PrivateRouteRequiresAuth> <ListingsPage /> </PrivateRouteRequiresAuth>} />
+              <Route path="/my-items" element={<PrivateRouteRequiresAuth>  <MyItemsPage /> </PrivateRouteRequiresAuth>} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/" element={<HomePage />} />
-              <Route path="/form/new" element={<LendItemPage/>} />
+              <Route path="/" element={<PrivateRouteRequiresAuth> <HomePage /> </PrivateRouteRequiresAuth>} />
+              <Route path="/form/new" element={<PrivateRouteRequiresAuth> <LendItemPage/> </PrivateRouteRequiresAuth>} />
             </Routes>
           </div>
         </div>
