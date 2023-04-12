@@ -9,7 +9,7 @@ const AuthButton = () => {
   if (!auth.isAuthenticated) {
     return (
       <Link className="btn border border-primary text-white me-3" to="/login">
-        Log in
+        Sign in
       </Link>
     );
   }
