@@ -8,8 +8,8 @@ const AuthButton = () => {
 
   if (!auth.isAuthenticated) {
     return (
-      <Link className="btn btn-primary" to="/login">
-        Login
+      <Link className="btn border border-primary text-white me-3" to="/login">
+        Log in
       </Link>
     );
   }

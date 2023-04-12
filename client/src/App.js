@@ -10,6 +10,7 @@ import AuthButton from "./components/AuthButton";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import "./App.css";
+import SignUpButton from "./components/SignUpButton";
 
 function Navigation(props) {
   return (
@@ -35,8 +36,10 @@ function Navigation(props) {
             </NavLink>
           </li>
         </ul>
+        <AuthButton/>
+        <SignUpButton/>
       </div>
-      <AuthButton/>
+      
     </nav>
   );
 }
