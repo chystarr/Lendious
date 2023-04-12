@@ -7,10 +7,19 @@ It seeds the database with several buildings and the set amount of item types.
 //const { ItemType } = require('../models/ItemType');    // Import ItemType model
 
 //seeding the db only work when import is written in this format
-const {Building, ItemType} = require("../models");
+const {Building, ItemType, User} = require("../models");
 
 // Seed database
 const seedDB = async () => {
+	// Create dummy user
+	const dan = await User.create({
+		user_id:1,
+		name: "Dan",
+		email: "dan@gmail.com",
+		password: "test123"
+	})
+
+
 	// Create a new building
 	const dummy_building = await Building.create({
         building_id: 1,
