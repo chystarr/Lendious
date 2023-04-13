@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import JoinBuildingButton from "./JoinBuildingButton";
 
-function BuildingCard(props) {
+function BuildingCard(props,{key}) {
   return (
     <div className="col-10 col-md-8 col-lg-7 mt-3">
         <div className="row card shadow">
@@ -9,7 +11,7 @@ function BuildingCard(props) {
                 <h1 class="card-title">{props.name}</h1>
             </div>
             <div className = "col">
-                <button type="button" className="btn btn-primary">Join</button>
+                <JoinBuildingButton key={key} name={props.name}/>
             </div>
           </div>
         </div>
