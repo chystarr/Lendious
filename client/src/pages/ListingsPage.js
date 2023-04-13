@@ -39,7 +39,7 @@ function ListingsPage() {
   if(loading) return <LoadingSpinner/>;
 
   const results = searchResults.map((listing) => {
-     return <ListingCard {...listing} key = {listing.id} />
+     return <ListingCard {...listing} key = {listing.listing_id} />
   })
 
   const content = results?.length ? results : <p className="mt-3">No Matching Listings</p>
