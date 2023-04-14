@@ -2,12 +2,15 @@ const express = require("express");
 const passport = require("../middlewares/authentication");
 const router = express.Router();
 const db = require("../models");
-const { Listing, ItemType } = db;
+const { Listing, Building, ItemType } = db;
 
 // Routes
 // 
 // GET /api/listings
 // Get all listings
+//
+// GET /api/listings/building/:id
+// Get all listings from a certain building
 //
 // GET /api/listings/item-type/:id
 // Get all listings of a certain type
@@ -20,6 +23,15 @@ const { Listing, ItemType } = db;
 
 router.get("/", passport.isAuthenticated(), (req, res) => {
   Listing.findAll({}).then((allListings) => res.json(allListings));
+});
+
+router.get("/building/:id", passport.isAuthenticated(), async (req, res) => {
+  const { id } = req.params;
+  const buildingWithId = await Building.findByPk(id);
+  if (!buildingWithId) {
+    return res.sendStatus(404);
+  }
+  Listing.findAll({where: {building_id: id}}).then(listingsFromBuilding => res.json(listingsFromBuilding));
 });
 
 // should be from a certain building in addition to being of a certain type?

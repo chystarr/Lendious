@@ -26,11 +26,15 @@ router.get("/", passport.isAuthenticated(), (req, res) => {
 });
 
 router.get("/my-building", passport.isAuthenticated(), (req, res) => {
-  const userId = req.user.id;
-  // this one returns info for user
-  // User.findOne(userId, { include: Building }).then((buildingInfo) => res.json(buildingInfo));
-  // findByPk user first?
+  /*
+  const userWithId = await User.findByPk(userId);
+  if (!userWithId) {
+    return res.sendStatus(404);
+  }
+  */
+  const userId = req.user.user_id;
   Building.findOne(userId, { include: User }).then(buildingInfo => res.json(buildingInfo));
+  //Building.findOne({include: User }, {where: {user_id: userId}}).then(buildingInfo => res.json(buildingInfo));
 });
 
 router.get("/:id/residents", passport.isAuthenticated(), async (req, res) => {
