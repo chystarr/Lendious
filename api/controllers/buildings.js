@@ -21,7 +21,7 @@ router.get("/", passport.isAuthenticated(), (req, res) => {
   Building.findAll({}).then((allBuildings) => res.json(allBuildings));
 });
 
-router.get("/:id/residents", async (req, res) => {
+router.get("/:id/residents", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const buildingWithId = await Building.findByPk(id);
   if (!buildingWithId) {
@@ -41,7 +41,7 @@ router.post("/", passport.isAuthenticated(), (req, res) => {
     });
 });
 
-router.post("/:id/join", async (req, res) => {
+router.post("/:id/join", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const userId = 1; // using 1 as a placeholder for req.user.id until user auth is added
   const buildingWithId = await Building.findByPk(id);

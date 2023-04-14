@@ -17,12 +17,12 @@ const { Listing, ItemType } = db;
 // PATCH /api/listings/:id/borrow
 // Borrow a listing
 
-router.get("/", (req, res) => {
+router.get("/", passport.isAuthenticated(), (req, res) => {
   Listing.findAll({}).then((allListings) => res.json(allListings));
 });
 
 // should be from a certain building in addition to being of a certain type?
-router.get("/item-type/:id", async (req, res) => {
+router.get("/item-type/:id", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const typeWithId = await ItemType.findByPk(id);
   if (!typeWithId) {
