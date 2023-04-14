@@ -31,8 +31,8 @@ router.get("/:id/residents", async (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { name } = req.body;
-  Building.create({ name })
+  const { building_id,name } = req.body;
+  Building.create({ building_id,name })
     .then((newBuilding) => {
       res.status(201).json(newBuilding);
     })
