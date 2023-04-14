@@ -9,6 +9,9 @@ const { Building, User } = db;
 // GET /api/buildings
 // Get list of all buildings
 //
+// GET /api/buildings/my-building
+// Get the building id of the current user
+//
 // GET /api/buildings/:id/residents
 // Get list of all residents of a certain building
 //
@@ -20,6 +23,13 @@ const { Building, User } = db;
 
 router.get("/", passport.isAuthenticated(), (req, res) => {
   Building.findAll({}).then((allBuildings) => res.json(allBuildings));
+});
+
+router.get("/my-building", passport.isAuthenticated(), (req, res) => {
+  const userId = req.user.id;
+  // this one returns info for user
+  // User.findOne(userId, { include: Building }).then((buildingInfo) => res.json(buildingInfo));
+  Building.findOne(userId, { include: User }).then(buildingInfo => res.json(buildingInfo));
 });
 
 router.get("/:id/residents", passport.isAuthenticated(), async (req, res) => {
