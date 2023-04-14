@@ -63,7 +63,7 @@ function LendItemPage() {
             "condition" : condition,
             "item_description" : descr,
             "building_id" : 1,
-            "item_type_id" : 1
+            "item_type_id" : itemTypeID
           }
         ),
       });
