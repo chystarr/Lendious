@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 // Load each controller
-
 const authController = require("./auth.js");
 const buildingsController = require("./buildings.js");
 const listingsController = require("./listings.js");
