@@ -67,7 +67,7 @@ function HomePage() {
         <p>
           Before you can <span className="text-primary">lend</span> find your apartment complex through the search bar.
         </p>
-        <SearchBar listings={buildings} setSearchResults={setSearchResults}/>
+        <SearchBar listings={buildings} setSearchResults={setSearchResults} flag={true}/>
         {content}
       </div>
     </div>
