@@ -1,7 +1,7 @@
 const express = require("express");
+const passport = require("../middlewares/authentication");
 const router = express.Router();
 const db = require("../models");
-const passport = require("../middlewares/authentication");
 const { Building, User } = db;
 
 // Routes
@@ -10,7 +10,7 @@ const { Building, User } = db;
 // Get list of all buildings
 //
 // GET /api/buildings/my-building
-// Get the building id of the current user
+// Get the building of the current user
 //
 // GET /api/buildings/:id/residents
 // Get list of all residents of a certain building
@@ -29,6 +29,7 @@ router.get("/my-building", passport.isAuthenticated(), (req, res) => {
   const userId = req.user.id;
   // this one returns info for user
   // User.findOne(userId, { include: Building }).then((buildingInfo) => res.json(buildingInfo));
+  // findByPk user first?
   Building.findOne(userId, { include: User }).then(buildingInfo => res.json(buildingInfo));
 });
 
@@ -54,7 +55,7 @@ router.post("/", passport.isAuthenticated(), (req, res) => {
 
 router.post("/:id/join", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
-  const userId = 1; // using 1 as a placeholder for req.user.id until user auth is added
+  const userId = req.user.user_id;
   const buildingWithId = await Building.findByPk(id);
   if (!buildingWithId) {
     return res.sendStatus(404);

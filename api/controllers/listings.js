@@ -1,7 +1,7 @@
 const express = require("express");
+const passport = require("../middlewares/authentication");
 const router = express.Router();
 const db = require("../models");
-const passport = require("../middlewares/authentication");
 const { Listing, ItemType } = db;
 
 // Routes
@@ -33,11 +33,10 @@ router.get("/item-type/:id", passport.isAuthenticated(), async (req, res) => {
 });
 
 // maybe modify this so that building_id has to be a param in the body
-// only allow user to do this if she's already a member of the building?
 router.post("/", passport.isAuthenticated(), (req, res) => {
   const { name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
-  const lender_id = 1; // placeholder until user auth is added
-  const borrower_id = 1; //placeholder
+  const lender_id = req.user.user_id;
+  const borrower_id = null;
   Listing.create({ name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, borrower_id, item_type_id })
   .then((newListing) => {
     res.status(201).json(newListing);
@@ -53,7 +52,7 @@ router.patch("/:id/borrow", passport.isAuthenticated(), async (req, res) => {
   if (!listingWithId) {
     return res.status(404);    
   }
-  listingWithId.borrower_id = 2; // using 2 as a placeholder for id of currently logged in user
+  listingWithId.borrower_id = req.user.user_id;
   listingWithId.save().then(updatedListing => {
     res.json(updatedListing);
   }).catch(err => {
