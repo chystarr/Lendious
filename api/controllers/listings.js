@@ -1,13 +1,16 @@
 const express = require("express");
+const passport = require("../middlewares/authentication");
 const router = express.Router();
 const db = require("../models");
-const passport = require("../middlewares/authentication");
-const { Listing, ItemType } = db;
+const { Listing, Building, ItemType } = db;
 
 // Routes
 // 
 // GET /api/listings
 // Get all listings
+//
+// GET /api/listings/building/:id
+// Get all listings from a certain building
 //
 // GET /api/listings/item-type/:id
 // Get all listings of a certain type
@@ -22,6 +25,15 @@ router.get("/", passport.isAuthenticated(), (req, res) => {
   Listing.findAll({}).then((allListings) => res.json(allListings));
 });
 
+router.get("/building/:id", passport.isAuthenticated(), async (req, res) => {
+  const { id } = req.params;
+  const buildingWithId = await Building.findByPk(id);
+  if (!buildingWithId) {
+    return res.sendStatus(404);
+  }
+  Listing.findAll({where: {building_id: id}}).then(listingsFromBuilding => res.json(listingsFromBuilding));
+});
+
 // should be from a certain building in addition to being of a certain type?
 router.get("/item-type/:id", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
@@ -33,11 +45,10 @@ router.get("/item-type/:id", passport.isAuthenticated(), async (req, res) => {
 });
 
 // maybe modify this so that building_id has to be a param in the body
-// only allow user to do this if she's already a member of the building?
 router.post("/", passport.isAuthenticated(), (req, res) => {
   const { name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
-  const lender_id = 1; // placeholder until user auth is added
-  const borrower_id = 1; //placeholder
+  const lender_id = req.user.user_id;
+  const borrower_id = null;
   Listing.create({ name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, borrower_id, item_type_id })
   .then((newListing) => {
     res.status(201).json(newListing);
@@ -53,7 +64,7 @@ router.patch("/:id/borrow", passport.isAuthenticated(), async (req, res) => {
   if (!listingWithId) {
     return res.status(404);    
   }
-  listingWithId.borrower_id = 2; // using 2 as a placeholder for id of currently logged in user
+  listingWithId.borrower_id = req.user.user_id;
   listingWithId.save().then(updatedListing => {
     res.json(updatedListing);
   }).catch(err => {
