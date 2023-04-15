@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         }),
 
         Listing.belongsTo(models.ItemType, {
-            foreignKey: "item_type",
+            foreignKey: "item_type_id",
             allowNull: false
         })
 	};
