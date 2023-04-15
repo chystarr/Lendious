@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function SignUpPage() {
   const auth = useAuth();
@@ -8,6 +9,9 @@ function SignUpPage() {
   const location = useLocation();
   const [data, setData] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [user_id, setUser_ID] = useState(0);
 
   const from = location.state?.from?.pathname || "/";
 
@@ -18,11 +22,35 @@ function SignUpPage() {
     };
   };
 
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+      try {
+        let response = await fetch("/api/auth/size");
+        let size = await response.json();
+        setUser_ID(size + 1);
+        setLoading(false);
+
+      } catch (error){
+        console.log("Error fetching user size");
+        setError(true);
+      }
+    }
+
+    getData();
+
+    return () => {
+      //clean up function
+    };
+  }, []);
+
+
+
   const signUp = (e) => {
     e.preventDefault();
-    let { name, email, password } = data;
+    let { name, email, password} = data;
     auth
-      .register(name, email, password)
+      .register(name, email, password, user_id)
       .then((user) => {
         // setRedirectToReferrer(true); // used in react-router v5
         // in react-router v6 navigate changes the pages directly.
@@ -48,6 +76,9 @@ function SignUpPage() {
       </div>
     );
   }
+
+
+  if(loading) return <LoadingSpinner/>
 
   return (
     <section className="vh-100">

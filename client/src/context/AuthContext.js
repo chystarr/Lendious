@@ -19,11 +19,11 @@ const AuthProvider = ({ children }) => {
       .catch((err) => setUser(false));
   }, []);
 
-  const register = (name, email, password) => {
+  const register = (name, email, password, user_id) => {
     //make request to create new user
     return fetch("/api/auth/signup", {
       method: "POST",
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ name, email, password, user_id }),
       headers: {
         "Content-Type": "application/json",
       },

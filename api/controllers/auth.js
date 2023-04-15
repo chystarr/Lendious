@@ -42,4 +42,11 @@ router.post("/logout", (req, res, next) => {
   });
 });
 
+router.get("/size", (req,res) => {
+  console.log("inside the size route");
+  User.findAll({}).then((allUsers) => {
+    res.json(allUsers.length)
+  });
+}) 
+
 module.exports = router;
