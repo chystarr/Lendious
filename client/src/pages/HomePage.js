@@ -83,6 +83,10 @@ function HomePage() {
   return (
     <div className="container-fluid text-center">
 			<div className="row justify-content-center">
+        <p>Welcome to Lendious</p>
+        <p>Empowering communities through shared ownership: Lend what you don't use, use what you need</p>
+        <LoginButton />
+        <LogoutButton />
         <p>
           Before you can <span className="text-primary">lend</span> find your apartment complex through the search bar.
         </p>
@@ -90,6 +94,7 @@ function HomePage() {
         {content}
       </div>
     </div>
+  
   );
 }
 
