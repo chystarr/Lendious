@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
+const passport = require("../middlewares/authentication");
 const { ItemType } = db;
 
 // Routes
@@ -11,11 +12,11 @@ const { ItemType } = db;
 // POST /api/item-types
 // Add a new item type
 
-router.get("/", (req, res) => {
+router.get("/", passport.isAuthenticated(), (req, res) => {
   ItemType.findAll({}).then((allItemTypes) => res.json(allItemTypes));
 });
 
-router.post("/", (req, res) => {
+router.post("/", passport.isAuthenticated(), (req, res) => {
   let { type } = req.body;
   ItemType.create({ type })
     .then((newType) => {

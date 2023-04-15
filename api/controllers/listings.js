@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
+const passport = require("../middlewares/authentication");
 const { Listing, ItemType } = db;
 
 // Routes
@@ -17,12 +18,12 @@ const { Listing, ItemType } = db;
 // PATCH /api/listings/:id/borrow
 // Borrow a listing
 
-router.get("/", (req, res) => {
+router.get("/", passport.isAuthenticated(), (req, res) => {
   Listing.findAll({}).then((allListings) => res.json(allListings));
 });
 
 // should be from a certain building in addition to being of a certain type?
-router.get("/item-type/:id", async (req, res) => {
+router.get("/item-type/:id", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const typeWithId = await ItemType.findByPk(id);
   if (!typeWithId) {
@@ -33,7 +34,7 @@ router.get("/item-type/:id", async (req, res) => {
 
 // maybe modify this so that building_id has to be a param in the body
 // only allow user to do this if she's already a member of the building?
-router.post("/", (req, res) => {
+router.post("/", passport.isAuthenticated(), (req, res) => {
   const { name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
   const lender_id = 1; // placeholder until user auth is added
   const borrower_id = 1; //placeholder
@@ -46,7 +47,7 @@ router.post("/", (req, res) => {
   });
 });
 
-router.patch("/:id/borrow", async (req, res) => {
+router.patch("/:id/borrow", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const listingWithId = await Listing.findByPk(id);
   if (!listingWithId) {

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
+const passport = require("../middlewares/authentication");
 const { Building, User } = db;
 
 // Routes
@@ -17,11 +18,11 @@ const { Building, User } = db;
 // POST /api/buildings/:id/join
 // Allows user to join the group for a certain building
 
-router.get("/", (req, res) => {
+router.get("/", passport.isAuthenticated(), (req, res) => {
   Building.findAll({}).then((allBuildings) => res.json(allBuildings));
 });
 
-router.get("/:id/residents", async (req, res) => {
+router.get("/:id/residents", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const buildingWithId = await Building.findByPk(id);
   if (!buildingWithId) {
@@ -30,9 +31,9 @@ router.get("/:id/residents", async (req, res) => {
   Building.findByPk(id, { include: User }).then(buildingInfo => res.json(buildingInfo.Users));
 });
 
-router.post("/", (req, res) => {
-  const { building_id,name } = req.body;
-  Building.create({ building_id,name })
+router.post("/", passport.isAuthenticated(), (req, res) => {
+  const { building_id, name } = req.body;
+  Building.create({ building_id, name })
     .then((newBuilding) => {
       res.status(201).json(newBuilding);
     })
@@ -41,7 +42,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.post("/:id/join", async (req, res) => {
+router.post("/:id/join", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const userId = 1; // using 1 as a placeholder for req.user.id until user auth is added
   const buildingWithId = await Building.findByPk(id);
