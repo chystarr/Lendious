@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import LoadingSpinner from "../components/LoadingSpinner";
 
@@ -10,6 +10,7 @@ function SignUpPage() {
   const [data, setData] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [success, setSucess] = useState(false);
 
   const [user_id, setUser_ID] = useState(0);
 
@@ -61,7 +62,8 @@ function SignUpPage() {
         //    when they get to the protected page and click the back button, they
         //    won't end up back on the login page, which is also really nice for the
         //    user experience.
-        navigate(from, { replace: true });
+        //navigate(from, { replace: true });
+        setSucess(true);
       })
       .catch((err) => {
         setError(true);
@@ -79,6 +81,8 @@ function SignUpPage() {
 
 
   if(loading) return <LoadingSpinner/>
+  //if new user created, send to the joinBuilding page
+  if(success) return <Navigate to="/" />
 
   return (
     <section className="vh-100">
