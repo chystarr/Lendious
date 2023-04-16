@@ -5,8 +5,13 @@ const { Provider } = AuthContext;
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(false);
+  const [recievedAuthenticationResponse, setRecievedAuthenticationResponse] = useState(false);
 
   useEffect(() => {
+    checkAuthentication();
+  }, []);
+
+  const checkAuthentication = () => {
     fetch("/api/auth/login")
       .then((response) => {
         if (!response.ok) {
@@ -16,8 +21,10 @@ const AuthProvider = ({ children }) => {
         return response.json();
       })
       .then((body) => setUser(body))
-      .catch((err) => setUser(false));
-  }, []);
+      .catch((err) => setUser(false))
+      .finally(() => setRecievedAuthenticationResponse(true));
+  }
+
 
   const register = (name, email, password, user_id) => {
     //make request to create new user
@@ -90,6 +97,7 @@ const AuthProvider = ({ children }) => {
         signout,
         isAuthenticated: user ? true : false,
         user,
+        recievedAuthenticationResponse
       }}
     >
       {children}
