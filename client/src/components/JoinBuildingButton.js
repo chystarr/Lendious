@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import LoadingSpinner from './LoadingSpinner';
 
-function JoinBuildingButton({key,name}) {
+function JoinBuildingButton({id, name}) {
 
     const [userId, setUserId] = useState("");
     const [loading, setLoading] = useState(false);
@@ -33,7 +33,7 @@ function JoinBuildingButton({key,name}) {
     {
         if(userId) userID = userId;
         try {
-            let response = await fetch("/api/buildings/" + userID +"/join", {
+            let response = await fetch("/api/buildings/" + id +"/join", {
               method: "POST",
               credentials: "include",
               headers: {
@@ -61,12 +61,12 @@ function JoinBuildingButton({key,name}) {
         <div className="row">
             <div className="col">
                
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target={"#" + id}>
                 Join
                 </button>
 
                 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id={"" + id} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
