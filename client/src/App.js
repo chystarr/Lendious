@@ -17,7 +17,7 @@ function Navigation(props) {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark shadow mb-3">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/listings">
           Lendious
         </Link>
         <ul className="navbar-nav me-auto">
