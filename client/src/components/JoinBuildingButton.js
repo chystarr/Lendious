@@ -55,7 +55,7 @@ function JoinBuildingButton({id, name}) {
           }   
     };
         
-      if (success) return <Navigate to="/listings" />;
+      if (success) return <Navigate to={"/listings/" + id} />;
   
     return (
         <div className="row">

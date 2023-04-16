@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("../middlewares/authentication");
 const router = express.Router();
 const db = require("../models");
-const { Building, User } = db;
+const { Building, User, Listing } = db;
 
 // Routes
 // 
@@ -33,6 +33,24 @@ router.get("/my-building", passport.isAuthenticated(), async (req, res) => {
   }
   Building.findOne({include: {model: User, where: {user_id: userId}}}).then(buildingInfo => res.json(buildingInfo.building_id));
 });
+
+router.get("/:id", passport.isAuthenticated(), async (req, res) => {
+  const { id } = req.params;
+  const buildingWithId = await Building.findByPk(id);
+  if (!buildingWithId) {
+    console.log("cant find building");
+    return res.sendStatus(404);
+  }
+  Listing.findAll({where: {building_id: id}}).then(listingsFromBuilding => {
+    if(!listingsFromBuilding)
+    {
+      console.log("inside empty findAll route")
+      res.status(200).send({});
+    }
+    res.json(listingsFromBuilding)
+  });
+});
+
 
 router.get("/:id/residents", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;

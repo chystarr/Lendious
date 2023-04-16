@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
 
 function LendItemPage() {
@@ -15,6 +15,7 @@ function LendItemPage() {
   
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  let params = useParams();
 
   const handleChange = (input) => e => {
     if (input === "name"){
@@ -62,7 +63,7 @@ function LendItemPage() {
             "range_end": rend,
             "condition" : condition,
             "item_description" : descr,
-            "building_id" : 1,
+            "building_id" : params.building_id,
             "item_type_id" : itemTypeID
           }
         ),
@@ -81,7 +82,7 @@ function LendItemPage() {
 
   };
 
-  if (success) return <Navigate to="/listings" />;
+  if (success) return <Navigate to={"/listings/" + params.building_id} />;
 
   return (
     <div className="container-fluid text-center">

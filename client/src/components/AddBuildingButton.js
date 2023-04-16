@@ -88,7 +88,7 @@ function AddBuildingButton({size}) {
             }   
       };
 
-      if (success) return <Navigate to="/listings" />;
+      if (success) return <Navigate to={"/listings/" + buildingId} />;
       if (loading) return <LoadingSpinner/>;
     return (
         <div className="row">
