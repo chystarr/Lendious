@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 function LoginPage() {
@@ -8,6 +8,9 @@ function LoginPage() {
   const location = useLocation();
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [user, setUser] = useState({});
+  const [b_id, setB_id] = useState(0);
 
   const from = location.state?.from?.pathname || "/";
 
@@ -35,12 +38,29 @@ function LoginPage() {
         //    won't end up back on the login page, which is also really nice for the
         //    user experience.
         //setAuth(true);
-        navigate(from, { replace: true });
+        //navigate(from, { replace: true });
+        setUser(user);
+        getBuildingID();
       })
       .catch((err) => {
         setError(true);
       });
   };
+
+  async function getBuildingID()
+  {
+    try {
+      let response = await fetch("/api/buildings/my-building");
+      console.log("getting the user building id:")
+      console.log(response);
+      let bid= await response.json();
+      setB_id(bid);
+      setSuccess(true)
+    } catch (error) {
+        console.log("Error getting user building id when logging in");
+        setError(true);
+    }
+  }
 
   let errorMessage = "";
   if (error) {
@@ -50,6 +70,8 @@ function LoginPage() {
       </div>
     );
   }
+  //upon logging back in, go to your buildings listing page instantly
+  if (success) return <Navigate to={"/listings/" + b_id}/>
 
   return (
     <section className="vh-100 align-items-center mt-5">
