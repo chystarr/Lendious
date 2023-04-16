@@ -55,7 +55,7 @@ function App() {
             <Routes>
               <Route path="/signup" element={<SignUpPage />} />
 							<Route path="/login" element={<LoginPage />} />
-              <Route path="/listings/:id" element={<PrivateRouteRequiresAuth> <ListingsPage /> </PrivateRouteRequiresAuth>} />
+              <Route path="/listings" element={<PrivateRouteRequiresAuth> <ListingsPage /> </PrivateRouteRequiresAuth>} />
               <Route path="/my-items" element={<PrivateRouteRequiresAuth>  <MyItemsPage /> </PrivateRouteRequiresAuth>} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/" element={<PrivateRouteRequiresAuth> <HomePage /> </PrivateRouteRequiresAuth>} />

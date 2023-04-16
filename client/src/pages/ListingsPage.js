@@ -4,7 +4,6 @@ import ErrorAlert from "../components/ErrorAlert";
 import ListingCard from "../components/ListingCard";
 import AddListingButton from "../components/AddListingButton";
 import SearchBar from "../components/SearchBar";
-import { useParams } from "react-router-dom";
 
 
 function ListingsPage() {
@@ -13,28 +12,25 @@ function ListingsPage() {
   const [error, setError] = useState(false);
   const [listings, setListings] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  let params = useParams();
+  const [b_id, setB_id] = useState(0);
+
   
   useEffect(() => {
     async function getData() {
       setLoading(true);
       try {
-        let response = await fetch("/api/buildings/" + params.id);
+        let response = await fetch("/api/buildings/my-building");
+        console.log("getting the user building id in listingsPage:")
+        console.log(response);
+        let bid = await response.json();
         if(response.ok)
         {
-          let allListings = await response.json();
-          setListings(allListings);
-          setSearchResults(allListings);
-          setLoading(false);
-        } else {
-          console.log("made call, but response not ok:");
-          console.log(response);
+          setB_id(bid);
+          getListings(bid);
         }
-        
-
-      } catch (error){
-        console.log("Error fetching building/" + params.id, error);
-        setError(true);
+      } catch (error) {
+          console.log("Error getting user building id when displaying listings");
+          setError(true);
       }
     }
 
@@ -43,7 +39,32 @@ function ListingsPage() {
     return () => {
       //clean up function
     };
-  }, [params.id]);
+  }, []);
+
+  async function getListings(bid)
+      {
+        try {
+          let response = await fetch("/api/buildings/" + bid);
+          if(response.ok)
+          {
+            let allListings = await response.json();
+            if(response.ok)
+            {
+              setListings(allListings);
+              setSearchResults(allListings);
+              setLoading(false);
+            }
+          } else {
+            console.log("made call, but response not ok:");
+            console.log(response);
+          }
+          
+
+        } catch (error){
+          console.log("Error fetching building/" + b_id, error);
+          setError(true);
+        }
+    }
 
   if(error) return <ErrorAlert details="Failed to fetch building listings" />;
   if(loading) return <LoadingSpinner/>;
@@ -57,7 +78,7 @@ function ListingsPage() {
   return (
     <div className="container-fluid text-center">
 			<div className="row justify-content-center">
-        <AddListingButton building_id={params.id}/>
+        <AddListingButton building_id={b_id}/>
         <SearchBar listings={listings} setSearchResults={setSearchResults}/>
         {content}
       </div>

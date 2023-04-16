@@ -82,7 +82,7 @@ function LendItemPage() {
 
   };
 
-  if (success) return <Navigate to={"/listings/" + params.building_id} />;
+  if (success) return <Navigate to={"/listings"} />;
 
   return (
     <div className="container-fluid text-center">

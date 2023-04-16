@@ -71,7 +71,7 @@ function LoginPage() {
     );
   }
   //upon logging back in, go to your buildings listing page instantly
-  if (success) return <Navigate to={"/listings/" + b_id}/>
+  if (success) return <Navigate to={"/listings"}/>
 
   return (
     <section className="vh-100 align-items-center mt-5">
