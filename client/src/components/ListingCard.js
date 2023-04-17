@@ -3,6 +3,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
 
 function ListingCard(props) {
+  const [error, setError] = useState(false);
+
+  const handleClick = async (event) => {
+    event.preventDefault();
+    try{
+      let response = await fetch("/api/listings/" + props.listing_id + "/borrow", {
+        method:"PATCH",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      });
+
+      if (!response.ok) {
+        setError(true);
+      }
+
+    } catch(error){
+      console.error("Server error when borrowing item", error);
+      setError(true);
+    }
+  };
+
   return (
     <div className="col-10 col-md-8 col-lg-7 mt-3">
         <div className="card shadow">
@@ -33,7 +56,7 @@ function ListingCard(props) {
                       {/*dropdown button*/}
                       <div className="col"></div>
                       <div className="col-4">
-                        <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target={"#" + props.listing_id} aria-expanded="false" aria-controls="collapseExample">⌄</button>
+                        <button className="btn btn-primary" type="button" onClick={handleClick} data-bs-toggle="collapse" data-bs-target={"#" + props.listing_id} aria-expanded="false" aria-controls="collapseExample">⌄</button>
                       </div>
                     </div>
                 </div>
