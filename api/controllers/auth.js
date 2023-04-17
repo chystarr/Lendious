@@ -8,6 +8,7 @@ router.post("/signup", (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    user_id: req.body.user_id
   })
     .then((user) => {
       user.password = undefined;
