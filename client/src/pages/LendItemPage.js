@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function LendItemPage() {
 
@@ -12,10 +13,36 @@ function LendItemPage() {
   const [descr, setDescr] = useState("");
   const [itemTypeID, setItemTypeID] = useState(0);
   const [confirm, setConfirm] = useState("");
+  const [loading, setLoading] = useState(false);
   
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [listing_id, setListing_ID]=useState(0);
   let params = useParams();
+
+
+  useEffect(() => {
+    async function getData() {
+      setLoading(true);
+      try {
+        let response = await fetch("/api/listings/size");
+        let size = await response.json();
+        setListing_ID(size + 1);
+        setLoading(false);
+
+      } catch (error){
+        console.log("Error fetching user size");
+        setError(true);
+      }
+    }
+
+    getData();
+
+    return () => {
+      //clean up function
+    };
+  }, []);
+
 
   const handleChange = (input) => e => {
     if (input === "name"){
@@ -57,6 +84,7 @@ function LendItemPage() {
         },
         body: JSON.stringify(
           {
+            "listing_id":listing_id,
             "name": name,
             "compensation" : compensation,
             "range_start": rstart,
@@ -83,6 +111,7 @@ function LendItemPage() {
   };
 
   if (success) return <Navigate to={"/listings"} />;
+  if (loading) return <LoadingSpinner/>;
 
   return (
     <div className="container-fluid text-center">
