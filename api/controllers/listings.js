@@ -15,6 +15,9 @@ const { Listing, Building, ItemType } = db;
 // GET /api/listings/item-type/:id
 // Get all listings of a certain type
 //
+// GET /api/listings/my-listings
+// Get all the users listings
+//
 // POST /api/listings
 // Add a new listing as the lender
 //
@@ -51,6 +54,16 @@ router.get("/item-type/:id", passport.isAuthenticated(), async (req, res) => {
   }
   Listing.findAll({where: {item_type_id: id}}).then(listingsWithType => res.json(listingsWithType));
 });
+
+router.get("/my-listings", passport.isAuthenticated(), async (req,res) => {
+  //take the passed in user_id
+  const id = req.user.user_id;
+  //find all listings where listings lender_id === passed in user_id
+  Listing.findAll({where: {lender_id: id}}).then((allUserListings) => {
+    res.json(allUserListings)
+  });
+})
+
 
 // maybe modify this so that building_id has to be a param in the body
 router.post("/", passport.isAuthenticated(), (req, res) => {
