@@ -66,11 +66,20 @@ function ListingsPage() {
   return (
     <div className="container-fluid text-center">
 			<div className="row justify-content-center">
+        <BorrowItem />
+        <LendOut />
+        <p>This is the Listings page</p>
+        <p>You can view all the items that are available to borrow in your building here</p>
+        <p>Also, there will be a link to lend a new item</p>
+        <ListingCard />
+        <ListingCard />
         <AddListingButton/>
         <SearchBar listings={listings} setSearchResults={setSearchResults}/>
         {content}
       </div>
     </div>
+
+
   );
 }
 
