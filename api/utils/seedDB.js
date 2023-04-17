@@ -7,7 +7,7 @@ It seeds the database with several buildings and the set amount of item types.
 //const { ItemType } = require('../models/ItemType');    // Import ItemType model
 
 //seeding the db only work when import is written in this format
-const {Building, ItemType, User, sequelize} = require("../models");
+const {Building, ItemType, User, sequelize, Listing} = require("../models");
 
 // Seed database
 const seedDB = async () => {
@@ -60,13 +60,88 @@ const seedDB = async () => {
         type:"Book"
 	});
 
-	// Add students to campuses
-	//await dummy_student.setCampus(dummy_campus);
-	//await dummy_student2.setCampus(dummy_campus2);
-
 	const BuildingMembership = sequelize.models.BuildingMembership;
 	const association1 = await BuildingMembership.create({BuildingBuildingId: 3, UserUserId: 1 });
 	const association2 = await BuildingMembership.create({BuildingBuildingId: 3, UserUserId: 2 });
+
+	const l1 = await Listing.create({
+		listing_id: 1,
+		name:"The Game of Life",
+		compensation:10,
+		range_start:"04/17/23",
+		range_end:"04/24/23",
+		condition:"Acceptable",
+		item_description:"A little wear and tear on the game board but all pieces and cards complete. Lending out for a week. This weekends game night is on me. Enjoy",
+		building_id:3,
+		lender_id:1,
+		item_type_id:2
+	})
+
+	const l2 = await Listing.create({
+		listing_id: 2,
+		name:"Jenga",
+		compensation:5,
+		range_start:"04/21/23",
+		range_end:"04/30/23",
+		condition:"Acceptable",
+		item_description:"Missing 3-4 pieces but the game is still playable.",
+		building_id:3,
+		lender_id:1,
+		item_type_id:2
+	})
+
+	const l3 = await Listing.create({
+		listing_id: 3,
+		name:"Uno",
+		compensation:5,
+		range_start:"04/22/23",
+		range_end:"04/23/23",
+		condition:"Acceptable",
+		item_description:"Its Uno",
+		building_id:3,
+		lender_id:1,
+		item_type_id:2
+	})
+
+	const l4 = await Listing.create({
+		listing_id: 4,
+		name:"5x Pine Plywood Panels",
+		compensation:0,
+		range_start:"04/22/23",
+		range_end:"04/23/23",
+		condition:"Like New",
+		item_description:"Have some left over wood panels from a craft project I did over the weekend. Don't have any use for the remaing panels and looking to get them off my hands. Dont want em back. Keep em",
+		building_id:3,
+		lender_id:2,
+		item_type_id:1
+	})
+
+	const l5 = await Listing.create({
+		listing_id: 5,
+		name:"Harry Potter and The Chamber of Secrets",
+		compensation:10,
+		range_start:"04/20/23",
+		range_end:"04/30/23",
+		condition:"Good",
+		item_description:"The pages have yellowed a bit and have some scribbles and stray marks. Nothing to stop you from reading the book or makeout the words on the page",
+		building_id:3,
+		lender_id:2,
+		item_type_id:3
+	})
+
+	const l6 = await Listing.create({
+		listing_id: 6,
+		name:"Structure and Interpretation of Computer Programs, Second Ed.",
+		compensation:0,
+		range_start:"04/20/23",
+		range_end:"04/30/23",
+		condition:"Acceptable",
+		item_description:"I got a newer edition and was looking to pass along this gem of a textbook. Interested in programming, hmu. Its yours for the taking. Don't want it back",
+		building_id:3,
+		lender_id:2,
+		item_type_id:3
+	})
+
 	
 }
 
