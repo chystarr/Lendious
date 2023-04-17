@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorAlert from "../components/ErrorAlert";
-import ListingCard from "../components/ListingCard";
+import MyItemCard from "../components/MyItemCard";
 import SearchBar from "../components/SearchBar";
 
 function MyItemsPage() {
@@ -69,10 +69,10 @@ function MyItemsPage() {
   if(loading) return <LoadingSpinner/>
 
   const results = searchResults.map((listing) => {
-      return <ListingCard {...listing} key = {listing.listing_id} />
+      return <MyItemCard {...listing} key = {listing.listing_id} />
   })
   const borrowedResults = borrowedSearchResults.map((listing) => {
-    return <ListingCard {...listing} key = {listing.listing_id} />
+    return <MyItemCard {...listing} key = {listing.listing_id} />
 })
 
  const content = results?.length ? results : <p className="mt-3">No Listings</p>
