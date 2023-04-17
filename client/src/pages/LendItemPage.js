@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
 
 function LendItemPage() {
@@ -10,9 +10,12 @@ function LendItemPage() {
   const [rend, setREnd] = useState("");
   const [condition, setCondition] = useState("");
   const [descr, setDescr] = useState("");
+  const [itemTypeID, setItemTypeID] = useState(0);
+  const [confirm, setConfirm] = useState("");
   
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  let params = useParams();
 
   const handleChange = (input) => e => {
     if (input === "name"){
@@ -23,10 +26,16 @@ function LendItemPage() {
       setRStart(e.target.value);
     } else if (input === "rend") {
       setREnd(e.target.value);
-    } else if (input === "condition") {
+    } else if (input === "condition" && e.target.value !== "Choose...") {
       setCondition(e.target.value);
+      console.log("condition: " + condition)
     } else if (input === "descr") {
       setDescr(e.target.value);
+    } else if (input === "itype" && e.target.value !== "Choose...") {
+      setItemTypeID(Number(e.target.value));
+      console.log("itype id in state: " + itemTypeID);
+    } else {
+      setConfirm(e.target.value);
     }
   }
 
@@ -54,8 +63,8 @@ function LendItemPage() {
             "range_end": rend,
             "condition" : condition,
             "item_description" : descr,
-            "building_id" : 1,
-            "item_type_id" : 1
+            "building_id" : params.building_id,
+            "item_type_id" : itemTypeID
           }
         ),
       });
@@ -73,7 +82,7 @@ function LendItemPage() {
 
   };
 
-  if (success) return <Navigate to="/listings" />;
+  if (success) return <Navigate to={"/listings"} />;
 
   return (
     <div className="container-fluid text-center">
@@ -83,13 +92,24 @@ function LendItemPage() {
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" placeholder="Monopoly: Among Us Edition" onChange={handleChange("name")}/>
         </div>
+  
+        {/*Item Type*/}
+        <div className="col-4 text-start">
+          <label for="itype" className="text-start">Item Type</label>
+          <select  name = "itype" id="itype" class="form-select" onChange={handleChange("itype")}>
+            <option selected>Choose...</option>
+            <option value = "1">Hardware/Tool</option>
+            <option value ="2">Game</option>
+            <option value="3">Book</option>
+          </select>
+        </div>
       </div>
 
       <div className="row">
         {/*Condition*/}
         <div className="col-4 text-start">
           <label for="condition" className="text-start">Condition</label>
-          <select  name = "condition" id="condition" class="form-select" onChange={handleChange("compensation")}>
+          <select  name = "condition" id="condition" class="form-select" onChange={handleChange("condition")}>
             <option selected>Choose...</option>
             <option>Like new</option>
             <option>Very Good</option>
@@ -119,19 +139,30 @@ function LendItemPage() {
         </div>
       </div>
 
-      <p className="text-start mt-3">
-        NOTE: Though items are free, it is required to enter a monetary amount you believe is adequate compensation 
-        in the case of the item being lost, stolen, or damaged. 
-      </p>
-      {/*Compensation*/}
+      <br></br>
       <div className="row">
+        <div className="col">
+          <p className="text-start mt-3">
+            NOTE: Though items are free, it is required to enter a monetary amount you believe is adequate compensation 
+            in the case of the item being lost, stolen, or damaged. 
+          </p>
+        </div>
+        {/*Compensation*/}
         <div className="col">
           <label for="compensation">Compensation</label>
           <input type="number" class="form-control" id="compensation" onChange={handleChange("compensation")} aria-label="Amount (to the nearest dollar)"/>
         </div>
       </div>
 
-      <button type="submit" className="btn btn-primary mt-3" onClick={handleSubmit}>Submit</button>
+      {/*Confirmation*/}
+      <div className="row justify-content-center ps-5 pe-5"> 
+        <div className="col text-start">
+          <input type="text" className="form-control" id="confirm" placeholder="Confirm" onChange={handleChange("confirm")}/>
+        </div>
+      </div>
+      
+      {confirm === "Confirm" ? <button type="submit" className="btn btn-primary mt-3" onClick={handleSubmit}>Lend</button> : <></>}
+      
 
     </div>
   );

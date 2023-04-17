@@ -12,13 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 				autoIncrement: true,
 				primaryKey: true,
 			},
-			firstName: {
-				type: DataTypes.STRING,
-				allowNull: true,
-				notEmpty: true,
-				validate: {},
-			},
-			lastName: {
+			name: {
 				type: DataTypes.STRING,
 				allowNull: true,
 				notEmpty: true,

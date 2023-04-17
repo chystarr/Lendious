@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
-function AddListingButton() {
+function AddListingButton({building_id}) {
   return (
     <div className="col-10 col-md-8 col-lg-7">
       <div className="card mb-4 shadow">
-        <Link to={"/form/new"}>
+        <Link to={"/form/new/"+building_id}>
             <button type="button" className="btn btn-primary btn-block w-100"> Create New Listing </button>
         </Link>
       </div>
