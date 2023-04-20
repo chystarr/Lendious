@@ -1,7 +1,7 @@
 # Lendious
 
 ## Instructions for running the app
-- Have two terminals open
+Have two terminals open
 - In one terminal:
 ```
 cp .env.example .env
@@ -14,6 +14,10 @@ cd client
 npm install
 npm start
 ```
+Database credentials:
+- Username: lendy_user
+- Password: lendy_pass
+- Database name: lendyDB
 
 ## Stack
 
