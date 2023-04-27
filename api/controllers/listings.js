@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("../middlewares/authentication");
 const router = express.Router();
 const db = require("../models");
-const { Listing, Building, ItemType } = db;
+const { Listing, ItemType } = db;
 
 // Routes
 // 
@@ -95,11 +95,11 @@ router.patch("/:id/borrow", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const listingWithId = await Listing.findByPk(id);
   if (!listingWithId) {
-    return res.status(404);
+    return res.sendStatus(404);
   }
   // check if the item is already being borrowed or the user is the lender of the item
   if (listingWithId.borrower_id || (req.user.user_id === listingWithId.lender_id)) {
-    return res.status(409);
+    return res.sendStatus(409);
   }
 
   listingWithId.borrower_id = req.user.user_id;
