@@ -12,6 +12,9 @@ const { Building, User, Listing } = db;
 // GET /api/buildings/my-building
 // Get the building of the current user
 //
+// GET /api/buildings/:id
+// Get all listings from a certain building
+//
 // GET /api/buildings/:id/residents
 // Get list of all residents of a certain building
 //
