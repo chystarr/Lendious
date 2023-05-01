@@ -29,7 +29,6 @@ function MyItemsPage() {
     getData();
 
     return () => {
-      //clean up function
     };
   }, []);
 

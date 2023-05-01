@@ -31,7 +31,6 @@ function HomePage() {
     getData();
 
     return () => {
-      //clean up function
     };
   }, []);
 
