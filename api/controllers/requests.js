@@ -1,7 +1,8 @@
 const express = require("express");
+const passport = require("../middlewares/authentication");
 const router = express.Router();
 const db = require("../models");
-const { Request } = db;
+const { Request, User, Building } = db;
 
 //    GET    /api/requests
 //    POST   /api/requests
@@ -14,11 +15,14 @@ const { Request } = db;
 //    /api comes from the file ../app.js
 //    /micro_posts comes from the file ./Request.js
 
-router.get("/", (req, res) => {
-  Request.findAll({}).then((allPosts) => res.json(allPosts));
+router.get("/", passport.isAuthenticated(), async (req, res) => {
+    const userId = req.user.user_id;
+    //const user = await User.findByPk(userId);
+    const buildingInfo = Building.findOne({include: {model: User, where: {user_id: userId}}});
+    Request.findAll({where:{building_id: buildingInfo.building_id}}).then((allRequests) => res.json(allRequests));
 });
 
-router.post("/", (req, res) => {
+router.post("/", passport.isAuthenticated(),(req, res) => {
   let { content } = req.body;
 
   Request.create({ content })
@@ -30,7 +34,7 @@ router.post("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", passport.isAuthenticated(), (req, res) => {
   const { id } = req.params;
   Request.findByPk(id).then((mpost) => {
     if (!mpost) {
@@ -41,7 +45,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", passport.isAuthenticated(), (req, res) => {
   const { id } = req.params;
   Request.findByPk(id).then((mpost) => {
     if (!mpost) {
@@ -60,7 +64,7 @@ router.put("/:id", (req, res) => {
   });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", passport.isAuthenticated(), (req, res) => {
   const { id } = req.params;
   Request.findByPk(id).then((mpost) => {
     if (!mpost) {
