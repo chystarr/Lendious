@@ -26,6 +26,9 @@ const { Listing, ItemType } = db;
 //
 // PATCH /api/listings/:id/borrow
 // Borrow a listing
+//
+// PATCH /api/listings/:id/edit
+// Edit a listing
 
 router.get("/", passport.isAuthenticated(), (req, res) => {
   Listing.findAll({}).then((allListings) => res.json(allListings));
@@ -110,6 +113,28 @@ router.patch("/:id/borrow", passport.isAuthenticated(), async (req, res) => {
   });
 });
 
+router.patch("/:id/edit", passport.isAuthenticated(), async (req, res) => {
+  const { id } = req.params;
+  const listingWithId = await Listing.findByPk(id);
+  if (!listingWithId) {
+    return res.sendStatus(404);
+  }
+
+  //name, compensation, range_start, range_end, condition, item_description, item_type_id
+  listingWithId.name = req.body.name;
+  listingWithId.compensation = req.body.compensation;
+  listingWithId.range_start = req.body.range_start;
+  listingWithId.range_end = req.body.range_end;
+  listingWithId.condition = req.body.condition;
+  listingWithId.item_description = req.body.item_description;
+  listingWithId.item_type_id = req.body.item_type_id;
+
+  listingWithId.save().then(updatedListing => {
+    res.json(updatedListing);
+  }).catch(err => {
+    res.status(400).json(err);
+  });
+});
 
 router.get("/size", (req,res) => {
   console.log("inside the size route");
