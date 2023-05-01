@@ -9,6 +9,7 @@ import { AuthProvider } from "./context/AuthContext";
 import AuthButton from "./components/AuthButton";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import RequestsPage from "./pages/RequestsPage";
 import "./App.css";
 import SignUpButton from "./components/SignUpButton";
 import PrivateRouteRequiresAuth from "./components/PrivateRouteRequiresAuth";
@@ -29,6 +30,11 @@ function Navigation(props) {
           <li className="nav-item">
             <NavLink className="nav-link" to="/my-items">
               My Items
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/requests">
+              Requests
             </NavLink>
           </li>
           <li className="nav-item">
@@ -57,6 +63,7 @@ function App() {
 							<Route path="/login" element={<LoginPage />} />
               <Route path="/listings" element={<PrivateRouteRequiresAuth> <ListingsPage /> </PrivateRouteRequiresAuth>} />
               <Route path="/my-items" element={<PrivateRouteRequiresAuth>  <MyItemsPage /> </PrivateRouteRequiresAuth>} />
+              <Route path="/requests" element={<PrivateRouteRequiresAuth>  <RequestsPage /> </PrivateRouteRequiresAuth>} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/" element={<PrivateRouteRequiresAuth> <HomePage /> </PrivateRouteRequiresAuth>} />
               <Route path="/form/new/:building_id" element={<PrivateRouteRequiresAuth> <LendItemPage/> </PrivateRouteRequiresAuth>} />
