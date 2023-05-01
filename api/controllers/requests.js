@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
-const { Requests } = db;
+const { Request } = db;
 
 //    GET    /api/requests
 //    POST   /api/requests
@@ -12,16 +12,16 @@ const { Requests } = db;
 // The full URL's for these routes are composed by combining the
 // prefixes used to load the controller files.
 //    /api comes from the file ../app.js
-//    /micro_posts comes from the file ./Requests.js
+//    /micro_posts comes from the file ./Request.js
 
 router.get("/", (req, res) => {
-  Requests.findAll({}).then((allPosts) => res.json(allPosts));
+  Request.findAll({}).then((allPosts) => res.json(allPosts));
 });
 
 router.post("/", (req, res) => {
   let { content } = req.body;
 
-  Requests.create({ content })
+  Request.create({ content })
     .then((newPost) => {
       res.status(201).json(newPost);
     })
@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  Requests.findByPk(id).then((mpost) => {
+  Request.findByPk(id).then((mpost) => {
     if (!mpost) {
       return res.sendStatus(404);
     }
@@ -43,7 +43,7 @@ router.get("/:id", (req, res) => {
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  Requests.findByPk(id).then((mpost) => {
+  Request.findByPk(id).then((mpost) => {
     if (!mpost) {
       return res.sendStatus(404);
     }
@@ -62,7 +62,7 @@ router.put("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
-  Requests.findByPk(id).then((mpost) => {
+  Request.findByPk(id).then((mpost) => {
     if (!mpost) {
       return res.sendStatus(404);
     }

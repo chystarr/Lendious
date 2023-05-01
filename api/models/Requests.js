@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
 
   Request.associate = (models) => {
     // associations can be defined here
+    Request.belongsTo(models.Building, {
+			foreignKey: "building_id",
+			allowNull: false,
+		})
   };
 
   return Request;
