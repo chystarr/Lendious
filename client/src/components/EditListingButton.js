@@ -6,7 +6,7 @@ function EditListingButton({listing_id}) {
     <div className="col-10 col-md-8 col-lg-7">
       <div className="card mb-4 shadow">
         <Link to={"/form/edit/"+listing_id}>
-            <button type="button" className="btn btn-primary btn-block w-100"> Edit </button>
+            <button type="button" className="btn btn-primary mx-auto"> Edit </button>
         </Link>
       </div>
     </div>

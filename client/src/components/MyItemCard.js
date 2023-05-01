@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
 import EditListingButton from "../components/EditListingButton";
+import DeleteListingButton from "./DeleteListingButton";
 
 function MyItemCard(props) {
   // active item card
@@ -14,7 +15,7 @@ function MyItemCard(props) {
                   <div className="col">
                       <div className="row">
                         {/*name*/}
-                        <h5 class="card-title">{props.name} ("active")</h5>
+                        <h5 class="card-title">{props.name}</h5>
                       </div>
                       <div className="row">
                         {/*date ranges*/}
@@ -64,7 +65,7 @@ function MyItemCard(props) {
                 <div className="col">
                     <div className="row">
                       {/*name*/}
-                      <h5 class="card-title">{props.name} ("passive")</h5>
+                      <h5 class="card-title">{props.name}</h5>
                     </div>
                     <div className="row">
                       {/*date ranges*/}
@@ -98,7 +99,7 @@ function MyItemCard(props) {
               <div className="d-flex justify-content-around">
                   <EditListingButton listing_id={props.listing_id}/>
                   <button className="btn btn-primary mt-3">Report an issue</button>
-                  <button className="btn btn-primary mt-3">Delete</button>
+                  <DeleteListingButton listing_id={props.listing_id}/>
                 </div>
             </div>
           </div>
