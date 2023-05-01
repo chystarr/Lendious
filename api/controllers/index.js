@@ -6,6 +6,7 @@ const authController = require("./auth.js");
 const buildingsController = require("./buildings.js");
 const listingsController = require("./listings.js");
 const itemTypesController = require("./itemTypes.js");
+const requestsController = require("./requests.js");
 
 // Mount each controller under a specific route. These
 // will be prefixes to all routes defined inside the controller
@@ -13,5 +14,6 @@ router.use("/auth", authController);
 router.use("/buildings", buildingsController);
 router.use("/listings", listingsController);
 router.use("/item-types", itemTypesController);
+router.use("/requests", requestsController);
 
 module.exports = router;
