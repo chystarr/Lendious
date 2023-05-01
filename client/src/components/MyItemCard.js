@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
+import EditListingButton from "../components/EditListingButton";
 
 function MyItemCard(props) {
   // active item card
@@ -95,7 +96,7 @@ function MyItemCard(props) {
                 <p className="card-text">{props.item_description}</p>
               </div>
               <div className="d-flex justify-content-around">
-                  <button className="btn btn-primary mt-3">Edit</button>
+                  <EditListingButton listing_id={props.listing_id}/>
                   <button className="btn btn-primary mt-3">Report an issue</button>
                   <button className="btn btn-primary mt-3">Delete</button>
                 </div>

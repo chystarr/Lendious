@@ -5,6 +5,7 @@ import ListingsPage from "./pages/ListingsPage";
 import MyItemsPage from "./pages/MyItemsPage";
 import AboutPage from "./pages/AboutPage";
 import LendItemPage from "./pages/LendItemPage";
+import EditItemPage from "./pages/EditItemPage";
 import { AuthProvider } from "./context/AuthContext";
 import AuthButton from "./components/AuthButton";
 import LoginPage from "./pages/LoginPage";
@@ -59,6 +60,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/" element={<PrivateRouteRequiresAuth> <HomePage /> </PrivateRouteRequiresAuth>} />
               <Route path="/form/new/:building_id" element={<PrivateRouteRequiresAuth> <LendItemPage/> </PrivateRouteRequiresAuth>} />
+              <Route path="/form/edit/:listing_id" element={<PrivateRouteRequiresAuth> <EditItemPage/> </PrivateRouteRequiresAuth>} />
             </Routes>
           </div>
         </div>
