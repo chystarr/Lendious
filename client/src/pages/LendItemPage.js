@@ -39,7 +39,6 @@ function LendItemPage() {
     getData();
 
     return () => {
-      //clean up function
     };
   }, []);
 

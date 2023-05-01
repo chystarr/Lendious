@@ -9,7 +9,6 @@ import { AuthProvider } from "./context/AuthContext";
 import AuthButton from "./components/AuthButton";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import "./App.css";
 import SignUpButton from "./components/SignUpButton";
 import PrivateRouteRequiresAuth from "./components/PrivateRouteRequiresAuth";
 

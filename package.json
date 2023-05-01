@@ -1,7 +1,5 @@
 {
   "name": "api-backend",
-  "version": "2022.2",
-  "description": "A starter express api backend that can also serve a React (CRA) client",
   "main": "index.js",
   "scripts": {
     "start": "node api/app.js",
@@ -9,8 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm install && npm run build"
   },
-  "author": "Edgardo Molina",
-  "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
