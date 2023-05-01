@@ -7,7 +7,7 @@ It seeds the database with several buildings and the set amount of item types.
 //const { ItemType } = require('../models/ItemType');    // Import ItemType model
 
 //seeding the db only work when import is written in this format
-const {Building, ItemType, User, sequelize, Listing} = require("../models");
+const {Building, ItemType, User, sequelize, Listing, Request} = require("../models");
 
 // Seed database
 const seedDB = async () => {
@@ -140,6 +140,16 @@ const seedDB = async () => {
 		building_id:3,
 		lender_id:2,
 		item_type_id:3
+	})
+
+	const r1 = await Request.create({
+		content:"Test request",
+		building_id: 3
+	})
+
+	const r2 = await Request.create({
+		content:"Test request 2",
+		building_id: 2
 	})
 
 	
