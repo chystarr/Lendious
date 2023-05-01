@@ -29,6 +29,9 @@ const { Listing, ItemType } = db;
 //
 // PATCH /api/listings/:id/edit
 // Edit a listing
+//
+// DELETE /api/listings/:id
+// Delete a listing
 
 router.get("/", passport.isAuthenticated(), (req, res) => {
   Listing.findAll({}).then((allListings) => res.json(allListings));
@@ -138,6 +141,21 @@ router.patch("/:id/edit", passport.isAuthenticated(), async (req, res) => {
   }).catch(err => {
     res.status(400).json(err);
   });
+});
+
+router.delete("/:id", passport.isAuthenticated(), async (req, res) => {
+  const { id } = req.params;
+  const listingWithId = await Listing.findByPk(id);
+  if (!listingWithId) {
+    return res.sendStatus(404);
+  }
+  // check if the item is already being borrowed
+  if (listingWithId.borrower_id) {
+    return res.sendStatus(409);
+  }
+
+  listingWithId.destroy();
+  res.sendStatus(204);
 });
 
 router.get("/size", (req,res) => {
