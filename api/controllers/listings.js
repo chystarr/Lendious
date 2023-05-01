@@ -119,6 +119,10 @@ router.patch("/:id/edit", passport.isAuthenticated(), async (req, res) => {
   if (!listingWithId) {
     return res.sendStatus(404);
   }
+  // check if the item is already being borrowed
+  if (listingWithId.borrower_id) {
+    return res.sendStatus(409);
+  }
 
   //name, compensation, range_start, range_end, condition, item_description, item_type_id
   listingWithId.name = req.body.name;
