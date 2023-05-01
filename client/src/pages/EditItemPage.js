@@ -163,7 +163,7 @@ function EditItemPage() {
         </div>
       </div>
       
-      {confirm === "Confirm" ? <button type="submit" className="btn btn-primary mt-3" onClick={handleSubmit}>Lend</button> : <></>}
+      {confirm === "Confirm" ? <button type="submit" className="btn btn-primary mt-3" onClick={handleSubmit}>Save Changes</button> : <></>}
       
 
     </div>
