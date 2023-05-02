@@ -18,7 +18,8 @@ const { Request, User, Building } = db;
 router.get("/", passport.isAuthenticated(), async (req, res) => {
     const userId = req.user.user_id;
     //const user = await User.findByPk(userId);
-    const buildingid = Building.findOne({include: {model: User, where: {user_id: userId}}}).then(buildingInfo.building_id);
+    const buildingid = await Building.findOne({include: {model: User, where: {user_id: userId}}})
+                      .then(buildingInfo => buildingInfo.building_id);
     Request.findAll({where:{building_id: buildingid}}).then((allRequests) => res.json(allRequests));
 });
 
