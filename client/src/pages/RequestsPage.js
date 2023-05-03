@@ -62,10 +62,8 @@ function RequestsPage() {
     <div className="container-fluid text-center">
       <div className="row justify-content-center">
         <AddRequestButton/>
+        {content}
       </div>
-	    <div className="row justify-content-center">
-            {content}
-        </div>
     </div>
   );
 }
