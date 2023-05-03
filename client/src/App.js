@@ -65,8 +65,9 @@ function App() {
               <Route path="/my-items" element={<PrivateRouteRequiresAuth>  <MyItemsPage /> </PrivateRouteRequiresAuth>} />
               <Route path="/requests" element={<PrivateRouteRequiresAuth>  <RequestsPage /> </PrivateRouteRequiresAuth>} />
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/" element={<PrivateRouteRequiresAuth> <HomePage /> </PrivateRouteRequiresAuth>} />
+              <Route path="/buildings" element={<PrivateRouteRequiresAuth> <HomePage /> </PrivateRouteRequiresAuth>} />
               <Route path="/form/new/:building_id" element={<PrivateRouteRequiresAuth> <LendItemPage/> </PrivateRouteRequiresAuth>} />
+              <Route path="*" element={<PrivateRouteRequiresAuth> <ListingsPage /> </PrivateRouteRequiresAuth>}/>
             </Routes>
           </div>
         </div>
