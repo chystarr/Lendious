@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorAlert from "../components/ErrorAlert";
 import RequestCard from "../components/RequestCard";
+import AddRequestButton from "../components/AddRequestButton";
 
 function RequestsPage() {
 
@@ -52,14 +53,16 @@ function RequestsPage() {
       </div>
       <div className="row text-center">
         <div className="col">
-          {/*<AddBuildingButton size={buildings.length}/>*/}
-          <p>add request button component here</p>
+          <AddRequestButton/>
         </div>
       </div>
     </>
   
   return (
     <div className="container-fluid text-center">
+      <div className="row justify-content-center">
+        <AddRequestButton/>
+      </div>
 	    <div className="row justify-content-center">
             {content}
         </div>

@@ -25,7 +25,12 @@ module.exports = (sequelize, DataTypes) => {
     Request.belongsTo(models.Building, {
 			foreignKey: "building_id",
 			allowNull: false,
-		})
+		},
+
+    Request.belongsTo(models.User, {
+       foreignKey: "requester_id",
+       allowNull: false
+   }))
   };
 
   return Request;
