@@ -18,6 +18,9 @@ function ListingCard(props) {
 
       if (!response.ok) {
         setError(true);
+      } else {
+        // Reload the page
+        window.location.reload();
       }
 
     } catch(error){
