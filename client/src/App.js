@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ListingsPage from "./pages/ListingsPage";
 import MyItemsPage from "./pages/MyItemsPage";
@@ -15,6 +15,9 @@ import SignUpButton from "./components/SignUpButton";
 import PrivateRouteRequiresAuth from "./components/PrivateRouteRequiresAuth";
 
 function Navigation(props) {
+  const location = useLocation();
+  const disabled = location.pathname === '/buildings';
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark shadow mb-3">
       <div className="container-fluid">
@@ -23,24 +26,37 @@ function Navigation(props) {
         </Link>
         <ul className="navbar-nav me-auto">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/listings">
-              Listings
-            </NavLink>
+            {!disabled ?
+              <NavLink className="nav-link" to="/listings">
+                Listings
+              </NavLink>
+              :
+              <NavLink></NavLink>}
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/my-items">
-              My Items
-            </NavLink>
+            {!disabled ?
+              <NavLink className="nav-link" to="/my-items">
+                My Items
+              </NavLink>
+              :
+              <NavLink></NavLink>}
+            
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/requests">
-              Requests
-            </NavLink>
+            {!disabled ?
+              <NavLink className="nav-link" to="/requests">
+                Requests
+              </NavLink>
+              :
+              <NavLink></NavLink>}
           </li>
           <li className="nav-item">
+            {!disabled ? 
             <NavLink className="nav-link" to="/about">
               About
             </NavLink>
+            :
+            <NavLink></NavLink>}
           </li>
         </ul>
         <AuthButton/>
