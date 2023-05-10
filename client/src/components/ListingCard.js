@@ -56,7 +56,8 @@ function ListingCard(props) {
                       {/*dropdown button*/}
                       <div className="col"></div>
                       <div className="col-4">
-                        <button className="btn btn-primary" type="button" onClick={handleClick} data-bs-toggle="collapse" data-bs-target={"#" + props.listing_id} aria-expanded="false" aria-controls="collapseExample">⌄</button>
+                        <button className="btn btn-primary" type="button" data-bs-toggle="collapse" 
+                        data-bs-target={"#" + props.listing_id} aria-expanded="false" aria-controls="collapseExample">⌄</button>
                       </div>
                     </div>
                 </div>
@@ -65,7 +66,7 @@ function ListingCard(props) {
               <div className="card card-body mt-1">
                 <p className="card-text">{props.item_description}</p>
               </div>
-              <button className="btn btn-primary mt-3">Borrow</button>
+              <button className="btn btn-primary mt-3" onClick={handleClick}>Borrow</button>
             </div>
           </div>
         </div>
