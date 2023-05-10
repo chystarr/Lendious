@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { Navigate } from "react-router-dom";
 import LoadingSpinner from './LoadingSpinner';
 
 function AddRequestButton() {
@@ -76,7 +75,7 @@ function AddRequestButton() {
       }
 
       
-      if (success) return <Navigate to={"/listings"} />;
+      if (success) window.location.reload();
       if (loading) return <LoadingSpinner/>;
     return (
           <div className="row">
