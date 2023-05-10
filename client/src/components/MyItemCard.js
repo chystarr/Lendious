@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 import EditListingButton from "../components/EditListingButton";
 import DeleteListingButton from "./DeleteListingButton";
 
@@ -47,7 +48,9 @@ function MyItemCard(props) {
                   <p className="card-text">{props.item_description}</p>
                 </div>
                 <div className="d-flex justify-content-around">
-                  <button className="btn btn-primary mt-3">Chat - arrange item dropoff/pickup</button>
+                  <Link to={"/chat/" + props.listing_id}>
+                    <button type="button" className="btn btn-primary mx-auto"> Chat - arrange item dropoff/pickup </button>
+                  </Link>
                   <button className="btn btn-primary mt-3">Report an issue</button>
                 </div>
               </div>
