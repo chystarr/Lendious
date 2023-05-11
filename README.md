@@ -2,7 +2,7 @@
 
 ## Build Instructions
 
-Node.js version >= 16 and PostgreSQL version >= 14 should be installed
+Node.js LTS version >= 16 and PostgreSQL LTS version >= 14 should be installed
 
 Clone the repository and have two terminals open
 
