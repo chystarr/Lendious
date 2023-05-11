@@ -17,14 +17,24 @@ const io = new Server(httpServer, {
 
 io.on("connection", (socket) => {
   console.log(socket.id);
-  // receive event emitted by the client
+  // implement better method of keeping track of room name
+  let room = "";
+  // receive join event emitted by the client
   socket.on("join", (arg) => {
     console.log(arg);
+    room = arg;
     socket.join(arg);
 
     socket.emit("msg", {
       text: "Welcome"
     });
+  });
+
+  // receive send event emitted by the client
+  socket.on("send", (arg) => {
+    // CHANGE TO BE EMITTING TO ALL USERS IN ROOM (PASS ROOM ON CLIENT SIDE DURING SEND EVENT)
+    //socket.emit("msg", arg);
+    io.in(room).emit("msg", arg);
   });
 });
 
@@ -33,7 +43,6 @@ io.on("connection", (socket) => {
 app.get('/', (req, res) => {
   res.send('Hello world');
 });
-
 
 httpServer.listen(4000);
 

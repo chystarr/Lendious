@@ -3,25 +3,15 @@ import { useEffect, useState } from 'react';
 const Messages = ({ socket }) => {
   const [messages, setMessages] = useState([]);
 
+  // updates the messages displayed whenever the client receives an "msg" event emitted by the server
   useEffect(() => {
     socket.on("msg", (msgInfo) => {
       console.log(msgInfo);
-      console.log(messages);
-      //setMessages(messages.push(msgInfo));
-      //setMessages(...messages, {text: msgInfo.message});
-      // setMessages({messages:[...messages, {text: msgInfo.message}]})
-      setMessages([...messages, msgInfo]);
-      console.log(messages);
+      setMessages(messages => [...messages, msgInfo]);
     });
 
     return () => socket.off("msg");
   }, [socket]);
-
-  /*
-  const messageItems = messages.map((message, index) => (
-    <li key={index}>{message.text}</li>
-  ));
-  */
 
   return (
     <div>
