@@ -23,6 +23,24 @@ Use the following credentials for the Postgres server:
 - Password: lendy_pass
 - Database name: lendyDB
 
+## Testing
+
+There exist two users pre-loaded into the database, Dan and Test, with the following credentials:
+
+User 1 - Dan:
+- email: dan@gmail.com
+- password: test123
+
+User 2 - Test
+- email: test@gmail.com
+- password: test123
+
+Login into the app with any users credentials and you will be greeted with pre-made listings and requests to simulate what the real world app experience would be like. 
+
+Both users are part of the same building, "170 Amsterdam Apartments".
+When creating your own account, it is best to join the same building as the other options may not have user activity pre-seeded into them. 
+
+
 ## Tech Stack
 
 - Frontend: React, React Router, Bootstrap, Socket.IO
