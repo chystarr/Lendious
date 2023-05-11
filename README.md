@@ -1,4 +1,6 @@
-# Lendious Build Instructions
+# Lendious - Group 6 Capstone Project
+
+## Build Instructions
 
 Node.js version >= 16 and PostgreSQL version >= 14 should be installed
 
