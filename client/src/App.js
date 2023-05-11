@@ -13,6 +13,11 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import SignUpButton from "./components/SignUpButton";
 import PrivateRouteRequiresAuth from "./components/PrivateRouteRequiresAuth";
+/*
+// Socket.IO setup (based on documentation)
+import { io } from "socket.io-client";
+const socket = io.connect('http://localhost:4000');
+*/
 
 function Navigation(props) {
   return (
@@ -62,7 +67,7 @@ function App() {
               <Route path="/" element={<PrivateRouteRequiresAuth> <HomePage /> </PrivateRouteRequiresAuth>} />
               <Route path="/form/new/:building_id" element={<PrivateRouteRequiresAuth> <LendItemPage/> </PrivateRouteRequiresAuth>} />
               <Route path="/form/edit/:listing_id" element={<PrivateRouteRequiresAuth> <EditItemPage/> </PrivateRouteRequiresAuth>} />
-              <Route path="/chat/:listing_id" element={<PrivateRouteRequiresAuth> <ChatPage /> </PrivateRouteRequiresAuth>} />
+              <Route path="/chat/:listing_id" element={<PrivateRouteRequiresAuth> <ChatPage/> </PrivateRouteRequiresAuth>} />
             </Routes>
           </div>
         </div>

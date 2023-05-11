@@ -1,14 +1,47 @@
 const express = require("express");
 const router = express.Router();
 
-// Load each controller
+// Socket.IO setup (based on documentation)
+const { createServer } = require("http");
+const { Server } = require("socket.io");
+const app = express();
+const httpServer = createServer(app);
+// since port 4000 is being used:
+const cors = require('cors');
+app.use(cors());
+const io = new Server(httpServer, {
+  cors: {
+    origin: "http://localhost:3000"
+  }
+});
+
+io.on("connection", (socket) => {
+  console.log(socket.id);
+  // receive event emitted by the client
+  socket.on("join", (arg) => {
+    console.log(arg);
+    socket.join(arg);
+
+    socket.emit("msg", {
+      text: "Welcome"
+    });
+  });
+});
+
+// (REMOVE LATER)
+// Test that server is running on port 4000
+app.get('/', (req, res) => {
+  res.send('Hello world');
+});
+
+
+httpServer.listen(4000);
+
 const authController = require("./auth.js");
 const buildingsController = require("./buildings.js");
 const listingsController = require("./listings.js");
 const itemTypesController = require("./itemTypes.js");
 
-// Mount each controller under a specific route. These
-// will be prefixes to all routes defined inside the controller
 router.use("/auth", authController);
 router.use("/buildings", buildingsController);
 router.use("/listings", listingsController);
