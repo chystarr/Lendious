@@ -88,13 +88,19 @@ function AddRequestButton() {
                   <div class="modal fade" id="requestModal" tabindex="-1" aria-labelledby="requestModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                       <div class="modal-content">
+                      {/*Modal Header*/}
                       <div class="modal-header">
                           <h1 class="modal-title fs-5" id="requestModalLabel">Request</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
+                      {/*Modal Body*/}
                       <div class="modal-body">
+                          {/*Request item name*/}
+                          
+                          {/*Request body*/}
                           <textarea type="text-area" class="form-control rounded" onChange={handleChange}/>
                       </div>
+                      {/*Modal Footer*/}
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                           <button type="button" onClick={handleSubmit} class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
