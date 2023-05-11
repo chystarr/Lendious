@@ -8,10 +8,16 @@ function AddRequestButton() {
     const [buildingId, setBuildingId] = useState(0);
     const [userId, setUserId] = useState("");
     const [loading, setLoading] = useState(false);
+    const [name, setName] = useState("");
     const [request, setRequest] = useState("");
 
     const handleChange = (event) => {
+      if(event.target.name === "item-name")
+      {
+        setName(event.target.value);
+      } else {
         setRequest(event.target.value);
+      }    
     } 
 
     {
@@ -58,6 +64,7 @@ function AddRequestButton() {
             },
             body: JSON.stringify({
               building_id: bID, 
+              item_requested: name,
               content: request,
               requester_id: uID
             }),
@@ -96,9 +103,9 @@ function AddRequestButton() {
                       {/*Modal Body*/}
                       <div class="modal-body">
                           {/*Request item name*/}
-                          
+                          <input type="text" className="form-control rounded" placeholder= "Item" name = "item-name" onChange={handleChange}/>
                           {/*Request body*/}
-                          <textarea type="text-area" class="form-control rounded" onChange={handleChange}/>
+                          <textarea type="text-area" class="form-control rounded" name="req-body" onChange={handleChange}/>
                       </div>
                       {/*Modal Footer*/}
                       <div class="modal-footer">
