@@ -13,7 +13,7 @@ const { Message, Listing } = db;
 // POST /api/messages
 // Add a new message
 
-router.get("/item-type/:id", passport.isAuthenticated(), async (req, res) => {
+router.get("/:id", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const listingWithId = await Listing.findByPk(id);
   if (!listingWithId) {
