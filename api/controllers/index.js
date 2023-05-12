@@ -17,14 +17,14 @@ const io = new Server(httpServer, {
 
 io.on("connection", (socket) => {
   console.log(socket.id);
-  // implement better method of keeping track of room name
   let room = "";
   // receive join event emitted by the client
   socket.on("join", (arg) => {
     console.log(arg);
     room = arg;
     socket.join(arg);
-
+    
+    // send msg event to the client
     socket.emit("msg", {
       text: "Welcome"
     });
