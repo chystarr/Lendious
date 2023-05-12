@@ -11,17 +11,8 @@ module.exports = (sequelize, DataTypes) => {
 				autoIncrement: true,
 				primaryKey: true,
 			},
-			sender_name: {
-				type: DataTypes.STRING,
-				notEmpty: true,
-				allowNull: false,
-			},
 			message_content: {
 				type: DataTypes.STRING(320),
-			},
-			date_sent: {
-				type: DataTypes.DATE,
-                defaultValue: DataTypes.NOW,
 			}
 		},
 		{
@@ -31,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
 	);
 
 	Message.associate = (models) => {
+        Message.belongsTo(models.User, {
+            foreignKey: "sender_id",
+            allowNull: false,
+        }),
         Message.belongsTo(models.Listing, {
             foreignKey: "listing_id",
             allowNull: false,
