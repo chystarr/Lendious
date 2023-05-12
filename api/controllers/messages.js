@@ -24,9 +24,9 @@ router.get("/:id", passport.isAuthenticated(), async (req, res) => {
 
 router.post("/", passport.isAuthenticated(), (req, res) => {
   // the current date will be used as the default date_sent value upon creation of a new entry in the Messages table
-  const { message_content } = req.body;
+  const { message_content, listing_id } = req.body;
   const sender_id = req.user.user_id;
-  Message.create({ sender_id, message_content })
+  Message.create({ sender_id, message_content, listing_id })
   .then((newMessage) => {
     res.status(201).json(newMessage);
   })
