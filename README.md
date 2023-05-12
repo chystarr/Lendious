@@ -45,3 +45,7 @@ When creating your own account, it is best to join the same building as the othe
 
 - Frontend: React, React Router, Bootstrap, Socket.IO
 - Backend: Node.js, Express.js, Sequelize.js, PostgreSQL, Socket.IO
+
+***
+
+See citations.md for information on resources used
