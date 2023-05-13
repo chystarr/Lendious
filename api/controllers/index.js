@@ -26,14 +26,12 @@ io.on("connection", (socket) => {
     
     // send msg event to the client
     socket.emit("msg", {
-      text: "Welcome"
+      message_content: "Welcome"
     });
   });
 
   // receive send event emitted by the client
   socket.on("send", (arg) => {
-    // CHANGE TO BE EMITTING TO ALL USERS IN ROOM (PASS ROOM ON CLIENT SIDE DURING SEND EVENT)
-    //socket.emit("msg", arg);
     io.in(room).emit("msg", arg);
   });
 });
