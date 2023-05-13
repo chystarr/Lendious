@@ -81,7 +81,7 @@ function SignUpPage() {
 
   if(loading) return <LoadingSpinner/>
   //if new user created, send to the joinBuilding page
-  if(success) return <Navigate to="/" />
+  if(success) return <Navigate to="/buildings" />
 
   return (
     <section className="vh-100">

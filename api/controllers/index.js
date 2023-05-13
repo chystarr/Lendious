@@ -44,12 +44,14 @@ const authController = require("./auth.js");
 const buildingsController = require("./buildings.js");
 const listingsController = require("./listings.js");
 const itemTypesController = require("./itemTypes.js");
+const requestsController = require("./requests.js");
 const messagesController = require("./messages.js");
 
 router.use("/auth", authController);
 router.use("/buildings", buildingsController);
 router.use("/listings", listingsController);
 router.use("/item-types", itemTypesController);
+router.use("/requests", requestsController);
 router.use("/messages", messagesController);
 
 module.exports = router;

@@ -84,7 +84,7 @@ function MyItemsPage() {
         <SearchBar listings={listings} setSearchResults={setSearchResults}/>
         {content}
         <h3>Items I'm Borrowing</h3>
-        <SearchBar borrowedListings={borrowedListings} setSearchResults={setSearchResults}/>
+        <SearchBar listings={borrowedListings} setSearchResults={setBorrowedSearchResults}/>
         {borrowedContent}
       </div>
     </div>

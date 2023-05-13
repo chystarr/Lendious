@@ -4,7 +4,7 @@ import ErrorAlert from "../components/ErrorAlert";
 import ListingCard from "../components/ListingCard";
 import AddListingButton from "../components/AddListingButton";
 import SearchBar from "../components/SearchBar";
-
+import {useAuth} from "../context/AuthContext"
 
 function ListingsPage() {
 
@@ -13,7 +13,7 @@ function ListingsPage() {
   const [listings, setListings] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [b_id, setB_id] = useState(0);
-
+  const userContext = useAuth();
   
   useEffect(() => {
     async function getData() {
@@ -68,7 +68,9 @@ function ListingsPage() {
   if(error) return <ErrorAlert details="Failed to fetch building listings" />;
   if(loading) return <LoadingSpinner/>;
 
-  const results = searchResults.map((listing) => {
+  const filteredListings = searchResults.filter((listing) => listing.lender_id !== userContext.user.user_id) 
+  const completeFilteredListings = filteredListings.filter((listing) => listing.borrower_id === null);
+  const results = completeFilteredListings.map((listing) => {
      return <ListingCard {...listing} key = {listing.listing_id} />
   })
 
