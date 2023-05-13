@@ -23,15 +23,11 @@ io.on("connection", (socket) => {
     console.log(arg);
     room = arg;
     socket.join(arg);
-    
-    // send msg event to the client
-    socket.emit("msg", {
-      message_content: "Welcome"
-    });
   });
 
   // receive send event emitted by the client
   socket.on("send", (arg) => {
+    // send msg event to the client
     io.in(room).emit("msg", arg);
   });
 });
