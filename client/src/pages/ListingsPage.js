@@ -37,7 +37,6 @@ function ListingsPage() {
     getData();
 
     return () => {
-      //clean up function
     };
   }, []);
 

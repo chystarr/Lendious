@@ -5,6 +5,8 @@ import ListingsPage from "./pages/ListingsPage";
 import MyItemsPage from "./pages/MyItemsPage";
 import AboutPage from "./pages/AboutPage";
 import LendItemPage from "./pages/LendItemPage";
+import EditItemPage from "./pages/EditItemPage";
+import ChatPage from "./pages/ChatPage";
 import { AuthProvider } from "./context/AuthContext";
 import AuthButton from "./components/AuthButton";
 import LoginPage from "./pages/LoginPage";
@@ -13,6 +15,11 @@ import RequestsPage from "./pages/RequestsPage";
 import "./App.css";
 import SignUpButton from "./components/SignUpButton";
 import PrivateRouteRequiresAuth from "./components/PrivateRouteRequiresAuth";
+/*
+// Socket.IO setup (based on documentation)
+import { io } from "socket.io-client";
+const socket = io.connect('http://localhost:4000');
+*/
 
 function Navigation(props) {
   const location = useLocation();
@@ -84,6 +91,8 @@ function App() {
               <Route path="/buildings" element={<PrivateRouteRequiresAuth> <HomePage /> </PrivateRouteRequiresAuth>} />
               <Route path="/form/new/:building_id" element={<PrivateRouteRequiresAuth> <LendItemPage/> </PrivateRouteRequiresAuth>} />
               <Route path="*" element={<PrivateRouteRequiresAuth> <ListingsPage /> </PrivateRouteRequiresAuth>}/>
+              <Route path="/form/edit/:listing_id" element={<PrivateRouteRequiresAuth> <EditItemPage/> </PrivateRouteRequiresAuth>} />
+              <Route path="/chat/:listing_id" element={<PrivateRouteRequiresAuth> <ChatPage/> </PrivateRouteRequiresAuth>} />
             </Routes>
           </div>
         </div>

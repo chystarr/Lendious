@@ -3,8 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import ErrorAlert from "../components/ErrorAlert";
 import LoadingSpinner from "../components/LoadingSpinner";
 
-function LendItemPage() {
-
+function EditItemPage() {
   const [name, setName] = useState("");
   const [compensation, setCompensation] = useState(0);
   const [rstart, setRStart] = useState("");
@@ -17,31 +16,8 @@ function LendItemPage() {
   
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-  const [listing_id, setListing_ID]=useState(0);
   let params = useParams();
-
-
-  useEffect(() => {
-    async function getData() {
-      setLoading(true);
-      try {
-        let response = await fetch("/api/listings/size");
-        let size = await response.json();
-        setListing_ID(size + 1);
-        setLoading(false);
-
-      } catch (error){
-        console.log("Error fetching user size");
-        setError(true);
-      }
-    }
-
-    getData();
-
-    return () => {
-    };
-  }, []);
-
+  console.log(params);
 
   const handleChange = (input) => e => {
     if (input === "name"){
@@ -75,22 +51,20 @@ function LendItemPage() {
   const handleSubmit = async(event) => {
     event.preventDefault();
     try{
-      let response = await fetch("/api/listings", {
-        method:"POST",
+      let response = await fetch("/api/listings/" + params.listing_id + "/edit", {
+        method:"PATCH",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(
           {
-            "listing_id":listing_id,
             "name": name,
             "compensation" : compensation,
             "range_start": rstart,
             "range_end": rend,
             "condition" : condition,
             "item_description" : descr,
-            "building_id" : params.building_id,
             "item_type_id" : itemTypeID
           }
         ),
@@ -189,11 +163,11 @@ function LendItemPage() {
         </div>
       </div>
       
-      {confirm === "Confirm" ? <button type="submit" className="btn btn-primary mt-3" onClick={handleSubmit}>Lend</button> : <></>}
+      {confirm === "Confirm" ? <button type="submit" className="btn btn-primary mt-3" onClick={handleSubmit}>Save Changes</button> : <></>}
       
 
     </div>
   );
 }
 
-export default LendItemPage;
+export default EditItemPage;

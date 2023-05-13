@@ -1,8 +1,12 @@
 import React, {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import EditListingButton from "../components/EditListingButton";
+import DeleteListingButton from "./DeleteListingButton";
 
 function MyItemCard(props) {
+  // active item card
   if (props.lender_id && props.borrower_id) {
     return (
       <div className="col-10 col-md-8 col-lg-7 mt-3">
@@ -43,13 +47,19 @@ function MyItemCard(props) {
                 <div className="card card-body mt-1">
                   <p className="card-text">{props.item_description}</p>
                 </div>
-                <button className="btn btn-primary mt-3">Chat - arrange item dropoff/pickup</button>
+                <div className="d-flex justify-content-around">
+                  <Link to={"/chat/" + props.listing_id}>
+                    <button type="button" className="btn btn-primary mx-auto"> Chat - arrange item dropoff/pickup </button>
+                  </Link>
+                  <button className="btn btn-primary mt-3">Report an issue</button>
+                </div>
               </div>
             </div>
           </div>
       </div>
     );
   }
+  // passive item card
   return (
     <div className="col-10 col-md-8 col-lg-7 mt-3">
         <div className="card shadow">
@@ -76,6 +86,23 @@ function MyItemCard(props) {
                       {props.item_type_id === 2 ? <FontAwesomeIcon icon={faChessBoard} className="fa-5x"/> : <></>}
                       {props.item_type_id === 3 ? <FontAwesomeIcon icon={faBook} className="fa-5x"/> : <></>}
                     </div>
+                    <div className="row justify-content-between">
+                      {/*dropdown button*/}
+                      <div className="col"></div>
+                      <div className="col-4">
+                        <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target={"#" + props.listing_id} aria-expanded="false" aria-controls="collapseExample">⌄</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div className="collapse" id={""+props.listing_id}>
+              <div className="card card-body mt-1">
+                <p className="card-text">{props.item_description}</p>
+              </div>
+              <div className="d-flex justify-content-around">
+                  <EditListingButton listing_id={props.listing_id}/>
+                  <button className="btn btn-primary mt-3">Report an issue</button>
+                  <DeleteListingButton listing_id={props.listing_id}/>
                 </div>
             </div>
           </div>

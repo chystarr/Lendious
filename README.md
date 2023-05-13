@@ -1,38 +1,51 @@
-# Lendious
+# Lendious - Group 6 Capstone Project
 
-## Instructions for running the app
-Have two terminals open
-- In one terminal:
+## Build Instructions
+
+Node.js LTS version >= 16 and PostgreSQL LTS version >= 14 should be installed
+
+Clone the repository and have two terminals open
+
+Run the server/backend in one terminal:
 ```
 cp .env.example .env
 npm install
 npm run dev
 ```
-- In the other terminal:
+Run the client/frontend in the other terminal:
 ```
 cd client
 npm install
 npm start
 ```
-Database credentials:
+Use the following credentials for the Postgres server:
 - Username: lendy_user
 - Password: lendy_pass
 - Database name: lendyDB
 
-## Stack
+## Testing
 
-> Node.js v16 LTS is recommended
+There exist two users pre-loaded into the database, Dan and Test, with the following credentials:
 
-_Backend API_
+User 1 - Dan:
+- email: dan@gmail.com
+- password: test123
 
-- express.js (v4.18.2)
-- sequelize.js (v6.25.2)
-- PostgreSQL (v14 recommended)
+User 2 - Test
+- email: test@gmail.com
+- password: test123
 
-_Frontend React client_
+Login into the app with any users credentials and you will be greeted with pre-made listings and requests to simulate what the real world app experience would be like. 
 
-- Based on `create-react-app`
-  - pre-configured to work with the api
-- Bootstrap (v5)
-  - added to `/client/public/index.html` (_optional_ can be removed)
-- React Router (v6)
+Both users are part of the same building, "170 Amsterdam Apartments".
+When creating your own account, it is best to join the same building as the other options may not have user activity pre-seeded into them. 
+
+
+## Tech Stack
+
+- Frontend: React, React Router, Bootstrap, Socket.IO
+- Backend: Node.js, Express.js, Sequelize.js, PostgreSQL, Socket.IO
+
+***
+
+See citations.md for information on resources used

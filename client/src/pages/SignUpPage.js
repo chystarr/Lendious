@@ -41,7 +41,6 @@ function SignUpPage() {
     getData();
 
     return () => {
-      //clean up function
     };
   }, []);
 
