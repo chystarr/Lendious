@@ -143,12 +143,14 @@ const seedDB = async () => {
 	})
 
 	const r1 = await Request.create({
+		item_requested: "Rope",
 		content:"Test request",
 		building_id: 3,
 		requester_id: 1
 	})
 
 	const r2 = await Request.create({
+		item_requested: "Test Item",
 		content:"Test request 2",
 		building_id: 3,
 		requester_id: 2
