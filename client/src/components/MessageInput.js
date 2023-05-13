@@ -31,7 +31,7 @@ const MessageInput = ({ socket, listing_id }) => {
     }
 
     socket.emit("send", {
-      text: msgJson.msgInput
+      message_content: msgJson.msgInput
     });
   };
 

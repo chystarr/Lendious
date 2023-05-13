@@ -13,6 +13,7 @@ const Messages = ({ socket, listing_id }) => {
   
         if (response.ok) {
           console.log("Retreived past messages");
+          setMessages(pastMessages);
         }
   
       } catch(error) {
@@ -39,7 +40,7 @@ const Messages = ({ socket, listing_id }) => {
     <div>
       <ul>
         {messages.map((message, index) => (
-          <li key={index}>{message.text}</li>
+          <li key={index}>{message.message_content}</li>
         ))}
       </ul>
     </div>

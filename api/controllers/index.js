@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
     
     // send msg event to the client
     socket.emit("msg", {
-      text: "Welcome"
+      message_content: "Welcome"
     });
   });
 
