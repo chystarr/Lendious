@@ -6,7 +6,6 @@ const Messages = ({ socket }) => {
   // updates the messages displayed whenever the client receives an "msg" event emitted by the server
   useEffect(() => {
     socket.on("msg", (msgInfo) => {
-      console.log(msgInfo);
       setMessages(messages => [...messages, msgInfo]);
     });
 

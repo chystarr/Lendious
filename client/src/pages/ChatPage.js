@@ -17,18 +17,13 @@ const ChatPage = () => {
     const room = params.listing_id;
     // emit event that will be received by server
     socket.emit("join", room);
-  
-    socket.on("connect", () => {
-      console.log(socket.connected);
-      console.log("hi");
-    });
   }, []);
   
   return (
     <div>
       <p>Chat page</p>
       <Messages socket={socket} />
-      <MessageInput socket={socket} />
+      <MessageInput socket={socket} listing_id={params.listing_id} />
     </div>
   );
 };
