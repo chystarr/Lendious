@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation, Link, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import lendiousImage from '../images/lendious_icon.png';
+import { Formik, Form } from "formik";
+import "../css/LoginPage.css";
+
 
 function LoginPage() {
   const auth = useAuth();
@@ -74,69 +78,55 @@ function LoginPage() {
   if (success) return <Navigate to={"/listings"}/>
 
   return (
-    <section className="vh-100 align-items-center mt-5">
-      <div
-        className="px-4 py-5 px-md-5 text-center text-lg-start "
-        style={{ backgroundColor: "hsl(0, 0%, 96%)" }}
-      >
-        <div className="container">
-          <div className="row gx-lg-5 align-items-center">
-            <div className="col-lg-6 mb-5 mb-lg-0 h-100">
-              <div className="card">
-                <div className="card-body py-5 px-md-5">
-                  <div className="row">
-                    <div>
-                      <form onSubmit={login}>
-                        <div className="form-row">
-                          {errorMessage}
-                          <input
-                            type="email"
-                            className="form-control w-100"
-                            name="email"
-                            placeholder="Email"
-                            value={data.email}
-                            onChange={fieldChanged("email")}
-                          />
-                          <input
-                            type="password"
-                            className="form-control w-100 mb-3"
-                            name="password"
-                            placeholder="Password"
-                            value={data.password}
-                            onChange={fieldChanged("password")}
-                          />
-                        </div>
-
-                        <button
-                          type="submit"
-                          className="btn btn-primary btn-block mb-4"
-                        >
-                          Sign-in
-                        </button>
-                      </form>
-                      <div className="align-item-center">
-                        Don't have an account?{" "}
-                        <Link to="/signup">Register Here</Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+    <div className="login">
+      <div className="login_wrapper">
+        <div className="login_wrap">
+          <div className="login_1">
+            <img src={lendiousImage} alt="Lendious Logo" className="img-fluid" />
+            <span>
+              Like a good neighbor
+            </span>
+          </div>
+          <div className="login_2">
+          <form onSubmit={login}>  
+              <div className="login_2_wrap">
+              {errorMessage}
+                            <input
+                              type="email"
+                              className="form-control w-100"
+                              name="email"
+                              placeholder="Email"
+                              value={data.email}
+                              onChange={fieldChanged("email")}
+                            />
+                            <input
+                              type="password"
+                              className="form-control w-100 mb-3"
+                              name="password"
+                              placeholder="Password"
+                              value={data.password}
+                              onChange={fieldChanged("password")}
+                            />
+                            <button
+                            type="submit"
+                            className="blue_btn"
+                          >
+                            Sign-in
+                          </button>
               </div>
-            </div>
-            <div className="col-lg-6 mb-5 mb-lg-0">
-              <h1 className="my-5 display-3 fw-bold ls-tight">
-                Sign<span className="text-primary">-</span>in
-                {/*<span class="text-primary">for your tracking needs</span>*/}
-              </h1>
-              <p style={{ color: "hsl(217 10%, 50.8%)" }}>
-                Sign-in to lend!
-              </p>
-            </div>
+            </form>
+             <div className="signup">
+              <Link to="/signup" className="blue_btn2 open_signup">Sign up</Link>
+                <div className="sign_splitter"></div>
+              </div>
           </div>
         </div>
+        <div className="register"></div>
       </div>
-    </section>
+    </div>
   );
 }
 
 export default LoginPage;
+
+<button type="submit" className="blue_btn"></button>

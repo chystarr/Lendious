@@ -20,11 +20,13 @@ const AuthButton = () => {
 
   return (
     <div className="text-white">
-      Welcome! {auth.user.name}
-      <button className="btn btn-primary" onClick={logout}>
+    <div className="d-flex align-items-center">
+      <div>Welcome! {auth.user.name}</div>
+      <button className="btn btn-primary ms-3" onClick={logout}>
         Logout
       </button>
     </div>
+  </div>
   );
 };
 
