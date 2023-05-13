@@ -1,0 +1,12 @@
+
+
+.btn:hover {
+    text-decoration: underline;
+  }
+  .about-us-header {
+    font-weight: bold;
+    color: blue;
+  }
+  .lendious-description {
+    padding: 10px;
+  }
