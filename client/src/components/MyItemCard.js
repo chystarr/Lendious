@@ -97,13 +97,21 @@ function MyItemCard(props) {
             </div>
             <div className="collapse" id={""+props.listing_id}>
               <div className="card card-body mt-1">
-                <p className="card-text">{props.item_description}</p>
-              </div>
-              <div className="d-flex justify-content-around">
-                  <EditListingButton listing_id={props.listing_id}/>
-                  <button className="btn btn-primary mt-3">Report an issue</button>
-                  <DeleteListingButton listing_id={props.listing_id}/>
+                <div className="row">
+                  <p className="card-text">{props.item_description}</p>
                 </div>
+              </div>
+              <div className="row">
+                  <div className="col d-flex justify-content-center">
+                    <EditListingButton listing_id={props.listing_id}/>
+                  </div>
+                  <div className="col">
+                    <button className="btn btn-primary mt-3">Report an issue</button>
+                  </div>
+                  <div className="col d-flex justify-content-center">
+                    <DeleteListingButton listing_id={props.listing_id}/>
+                  </div>   
+              </div>  
             </div>
           </div>
         </div>

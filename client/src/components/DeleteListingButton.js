@@ -11,10 +11,8 @@ function DeleteListingButton({listing_id}) {
   }
 
   return (
-    <div className="col-10 col-md-8 col-lg-7">
-      <div className="card mb-4 shadow">
+    <div className="col-10 col-md-8 col-lg-7 mt-3">
         <button type="button" onClick={handleClick} className="btn btn-primary mx-auto"> Delete </button>
-      </div>
     </div>
   );
 };
