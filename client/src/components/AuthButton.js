@@ -19,6 +19,7 @@ const AuthButton = () => {
   };
 
   return (
+    // spaces out and centers the users name away from logout button
     <div className="text-white">
     <div className="d-flex align-items-center">
       <div>Welcome! {auth.user.name}</div>

@@ -1,5 +1,8 @@
 
-
+body {
+  
+  background: linear-gradient(to top, #2165bd 0%, #85bae2 100%);
+}
 .btn:hover {
     text-decoration: underline;
   }
@@ -7,6 +10,29 @@
     font-weight: bold;
     color: blue;
   }
+  .about-us-container {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  .about-us-container.fade-in {
+    opacity: 1;
+  }
   .lendious-description {
     padding: 10px;
   }
+
+  .lendious-logo {
+    animation: animateIn 1s ease-in-out forwards;
+    transform: scale(0);
+  }
+  
+  @keyframes animateIn {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
