@@ -5,7 +5,7 @@ import ListingCard from "../components/ListingCard";
 import AddListingButton from "../components/AddListingButton";
 import SearchBar from "../components/SearchBar";
 import {useAuth} from "../context/AuthContext"
-
+import "../css/ListingsPage.css";
 function ListingsPage() {
 
   const [loading, setLoading] = useState(true);
