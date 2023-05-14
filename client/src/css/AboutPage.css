@@ -1,12 +1,47 @@
 
+.about-us-container {
+  background: linear-gradient(to top, #2165bd 0%, #85bae2 100%);
+
+}
 
 .btn:hover {
     text-decoration: underline;
   }
-  .about-us-header {
+.about-us {
+    margin: 10%;
+    padding: 20px;
+    background: linear-gradient(to top, #2196bd 0%, #85e2d9 100%);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+  }
+.about-us-header {
     font-weight: bold;
     color: blue;
   }
-  .lendious-description {
+.about-us-container {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+.about-us-container.fade-in {
+    opacity: 1;
+  }
+.lendious-description {
+    background: linear-gradient(to top, #2196bd 0%, #85e2d9 100%);
     padding: 10px;
   }
+/*animation notes taken from mdn webdocs and geeks4geeks */
+  .lendious-logo {
+    animation: animateIn 1s ease-in-out forwards;
+    transform: scale(0);
+  }
+  
+  @keyframes animateIn {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
