@@ -78,7 +78,7 @@ function LoginPage() {
   if (success) return <Navigate to={"/listings"}/>
 
   return (
-    <div className="login">
+    <div className="login fade-in">
       <div className="login_wrapper">
         <div className="login_wrap">
           <div className="login_1">

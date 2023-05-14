@@ -1,1 +1,22 @@
 /* CSS for App.js */
+
+  .navbar-brand {
+    font-size: 1.5rem; /* increase the font size of the logo  rem => root element*/
+    font-weight: bold;
+  }
+  
+  .navbar-nav {
+    margin: auto; /*move all the other links towards the center*/
+  }
+  
+  .nav-link {
+    color: #7CFC00; /*All links will be a light green*/
+    font-size: 1.2rem; 
+    margin-right: 1rem; /*space the links*/
+  }
+  /*
+  make link purple upon hovering
+  */
+  .nav-link:hover {
+    color: rgb(196, 65, 196); 
+  }
