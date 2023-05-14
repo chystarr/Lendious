@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
 				primaryKey: true,
 			},
 			message_content: {
+				// Twilio, a popular suite of messaging APIs, recommends that messages should be
+				// no more than 320 characters in length
 				type: DataTypes.STRING(320),
 			}
 		},
