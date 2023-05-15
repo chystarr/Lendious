@@ -21,6 +21,9 @@ const { Listing, ItemType, ListingImage } = db;
 // GET /api/listings/borrowing
 // Get all listings where the user is the one borrowing them
 //
+// GET /api/listings/:id
+// Get the data about a certain listing
+//
 // POST /api/listings
 // Add a new listing as the lender
 //
@@ -63,6 +66,16 @@ router.get("/borrowing", passport.isAuthenticated(), async (req,res) => {
     res.json(allUserListings)
   });
 })
+/*
+router.get("/:id", passport.isAuthenticated(), async (req,res) => {
+  //take the passed in user_id
+  const {id} = req.params;
+  //find all listings where listings borrower_id === passed in user_id
+  Listing.findByPk(id).then((allUserListings) => {
+    res.json(allUserListings)
+  });
+})
+*/
 
 // maybe modify this so that building_id has to be a param in the body
 router.post("/", passport.isAuthenticated(), (req, res) => {
@@ -151,6 +164,6 @@ router.get("/size", (req,res) => {
   Listing.findAll({}).then((allPosts) => {
     res.json(allPosts.length)
   });
-}) 
+});
 
 module.exports = router;
