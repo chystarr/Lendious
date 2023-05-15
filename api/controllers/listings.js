@@ -98,12 +98,10 @@ router.get("/:id", passport.isAuthenticated(), async (req,res) => {
 // maybe modify this so that building_id has to be a param in the body
 router.post("/", passport.isAuthenticated(), (req, res) => {
   //const {b_id} = req.params;
-  //const { listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
-  const { name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
+  const { listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
   const lender_id = req.user.user_id;
   const borrower_id = null;
-  //Listing.create({ listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, borrower_id, item_type_id })
-  Listing.create({ name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, borrower_id, item_type_id })
+  Listing.create({ listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, borrower_id, item_type_id })
   .then((newListing) => {
     res.status(201).json(newListing);
   })
