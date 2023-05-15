@@ -47,12 +47,16 @@ function MyItemCard(props) {
                 <div className="card card-body mt-1">
                   <p className="card-text">{props.item_description}</p>
                 </div>
-                <div className="d-flex justify-content-around">
-                  <Link to={"/chat/" + props.listing_id}>
-                    <button type="button" className="btn btn-primary mx-auto"> Chat - arrange item dropoff/pickup </button>
-                  </Link>
-                  <button className="btn btn-primary mt-3">Report an issue</button>
-                </div>
+                <div className="row">
+                  <div className="col d-flex justify-content-center">
+                    <Link to={"/chat/" + props.listing_id}>
+                      <button type="button" className="btn btn-primary mx-auto mt-3"> Chat </button>
+                    </Link>
+                  </div>
+                  <div className="col">
+                    <button className="btn btn-primary mt-3">Report an issue</button>
+                  </div>
+              </div>  
               </div>
             </div>
           </div>
