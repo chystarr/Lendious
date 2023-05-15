@@ -21,7 +21,6 @@ const ChatPage = () => {
   
   return (
     <div>
-      <p>Chat page</p>
       <Messages socket={socket} listing_id={params.listing_id} />
       <MessageInput socket={socket} listing_id={params.listing_id} />
     </div>
