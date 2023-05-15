@@ -38,7 +38,11 @@ User 2 - Test
 Login into the app with any users credentials and you will be greeted with pre-made listings and requests to simulate what the real world app experience would be like. 
 
 Both users are part of the same building, "170 Amsterdam Apartments".
-When creating your own account, it is best to join the same building as the other options may not have user activity pre-seeded into them. 
+When creating your own account, it is best to join the same building as the other options may not have user activity pre-seeded into them.
+
+<br>
+
+[Postman collection used for endpoint testing](https://solar-spaceship-776682.postman.co/workspace/Lendious-Workspace~efd69f12-b387-461c-8ea1-c9b03ac53fc8/collection/23311998-c29dca1a-998b-44c0-9091-97ed36876109?action=share&creator=23311998)
 
 
 ## Tech Stack
