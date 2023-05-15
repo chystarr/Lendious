@@ -3,9 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import EditListingButton from "../components/EditListingButton";
+import AddImageButton from "../components/AddImageButton";
 import DeleteListingButton from "./DeleteListingButton";
 
 function MyItemCard(props) {
+  // !!!!!!!
+  // TODO: make an imageButton variable that gets set to either AddImageButton or EditImageButton
+  // (or do add/remove instead?)
+
   // active item card
   if (props.lender_id && props.borrower_id) {
     return (
@@ -101,6 +106,7 @@ function MyItemCard(props) {
               </div>
               <div className="d-flex justify-content-around">
                   <EditListingButton listing_id={props.listing_id}/>
+                  {/*<AddImageButton listing_id={props.listing_id}/>*/}
                   <button className="btn btn-primary mt-3">Report an issue</button>
                   <DeleteListingButton listing_id={props.listing_id}/>
                 </div>
