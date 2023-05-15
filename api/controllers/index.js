@@ -46,6 +46,7 @@ const listingsController = require("./listings.js");
 const itemTypesController = require("./itemTypes.js");
 const requestsController = require("./requests.js");
 const messagesController = require("./messages.js");
+const usersController = require("./users.js")
 
 router.use("/auth", authController);
 router.use("/buildings", buildingsController);
@@ -53,5 +54,6 @@ router.use("/listings", listingsController);
 router.use("/item-types", itemTypesController);
 router.use("/requests", requestsController);
 router.use("/messages", messagesController);
+router.use("/users", usersController);
 
 module.exports = router;

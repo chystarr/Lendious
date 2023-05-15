@@ -1,7 +1,26 @@
 import { useEffect, useState } from 'react';
+import Message from "./Message.js";
 
 const Messages = ({ socket, listing_id }) => {
   const [messages, setMessages] = useState([]);
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    async function getData () {
+      try {
+        let nameResponse = await fetch("/api/users/name");
+        let senderName = await nameResponse.json();
+        setName(senderName);
+      } catch (error) {
+        console.error("Error identifying sender", error);
+      }
+    }
+    
+      getData();
+
+    return () => {
+    };
+  }, []);
 
   useEffect(() => {
     // retrieve all past messages for this chatroom upon entering
@@ -12,8 +31,17 @@ const Messages = ({ socket, listing_id }) => {
         console.log(pastMessages);
   
         if (response.ok) {
-          console.log("Retreived past messages");
+          console.log("Retreiving past messages");
           setMessages(pastMessages);
+
+          // send each of the past messages to the server
+          messages.forEach(message => {
+            console.log(message);
+            socket.emit("send", {
+              sender_name: name,
+              message_content: message.message_content
+            });
+          })
         }
   
       } catch(error) {
@@ -38,11 +66,9 @@ const Messages = ({ socket, listing_id }) => {
 
   return (
     <div>
-      <ul>
         {messages.map((message, index) => (
-          <li key={index}>{message.message_content}</li>
+          <Message key={index} message={message} />
         ))}
-      </ul>
     </div>
   );
 };

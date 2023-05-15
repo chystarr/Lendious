@@ -1,4 +1,25 @@
+import { useState, useEffect } from 'react';
+
 const MessageInput = ({ socket, listing_id }) => {
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    async function getData () {
+      try {
+        let nameResponse = await fetch("/api/users/name");
+        let senderName = await nameResponse.json();
+        setName(senderName);
+      } catch (error) {
+        console.error("Error identifying sender", error);
+      }
+    }
+    
+    getData();
+
+    return () => {
+    };
+  }, []);
+
   const handleSubmit = async (e) => {
     // form submit handling referenced from React documentation
     e.preventDefault();
@@ -31,18 +52,21 @@ const MessageInput = ({ socket, listing_id }) => {
     }
 
     socket.emit("send", {
+      sender_name: name,
       message_content: msgJson.msgInput
     });
   };
 
   return (
     <div>
-      <ul>
         <form onSubmit={handleSubmit}>
-          <input name="msgInput" />
-          <button type="submit">Send</button>
+          <div className="input-group mb-3 fixed-bottom">
+            <input type="text" className="form-control" name="msgInput" />
+            <div className="input-group-append">
+              <button className="btn btn-outline-secondary" type="submit">Send</button>
+            </div>
+          </div>
         </form>
-      </ul>
     </div>
   );
 };
