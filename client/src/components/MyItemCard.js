@@ -106,7 +106,7 @@ function MyItemCard(props) {
               </div>
               <div className="d-flex justify-content-around">
                   <EditListingButton listing_id={props.listing_id}/>
-                  {/*<AddImageButton listing_id={props.listing_id}/>*/}
+                  <AddImageButton listing_id={props.listing_id}/>
                   <button className="btn btn-primary mt-3">Report an issue</button>
                   <DeleteListingButton listing_id={props.listing_id}/>
                 </div>
