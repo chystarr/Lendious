@@ -37,12 +37,14 @@ const MessageInput = ({ socket, listing_id }) => {
 
   return (
     <div>
-      <ul>
         <form onSubmit={handleSubmit}>
-          <input name="msgInput" />
-          <button type="submit">Send</button>
+          <div class="input-group mb-3 w-80 fixed-bottom">
+            <input type="text" class="form-control" name="msgInput" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Send</button>
+            </div>
+          </div>
         </form>
-      </ul>
     </div>
   );
 };
