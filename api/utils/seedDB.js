@@ -7,7 +7,7 @@ It seeds the database with several buildings and the set amount of item types.
 //const { ItemType } = require('../models/ItemType');    // Import ItemType model
 
 //seeding the db only work when import is written in this format
-const {Building, ItemType, User, sequelize, Listing, Request} = require("../models");
+const {Building, ItemType, User, sequelize, Listing, Request, Message} = require("../models");
 
 // Seed database
 const seedDB = async () => {
@@ -64,6 +64,9 @@ const seedDB = async () => {
 	const association1 = await BuildingMembership.create({BuildingBuildingId: 3, UserUserId: 1 });
 	const association2 = await BuildingMembership.create({BuildingBuildingId: 3, UserUserId: 2 });
 
+
+	///// LISTINGS //////////////////////////////////////////////
+
 	const l1 = await Listing.create({
 		listing_id: 1,
 		name:"The Game of Life",
@@ -87,7 +90,8 @@ const seedDB = async () => {
 		item_description:"Missing 3-4 pieces but the game is still playable.",
 		building_id:3,
 		lender_id:1,
-		item_type_id:2
+		item_type_id:2,
+		borrower_id: 2
 	})
 
 	const l3 = await Listing.create({
@@ -126,7 +130,8 @@ const seedDB = async () => {
 		item_description:"The pages have yellowed a bit and have some scribbles and stray marks. Nothing to stop you from reading the book or makeout the words on the page",
 		building_id:3,
 		lender_id:2,
-		item_type_id:3
+		item_type_id:3,
+		borrower_id: 1
 	})
 
 	const l6 = await Listing.create({
@@ -141,6 +146,57 @@ const seedDB = async () => {
 		lender_id:2,
 		item_type_id:3
 	})
+
+	const l7 = await Listing.create({
+		listing_id: 7,
+		name:"Cordless Electric Handdrill",
+		compensation:0,
+		range_start:"04/20/23",
+		range_end:"04/30/23",
+		condition:"Acceptable",
+		item_description:"DEWALT 20-volt drill. If you need to do some repairs or building this will do the job",
+		building_id:3,
+		lender_id:1,
+		item_type_id:1
+	})
+	
+	/////// MESSAGES //////////////////////////////////////////
+	const m1 = await Message.create({
+		message_id: 1,
+		message_content: "Hi, This is Dan from room 540. Can we arrange a time to meet today anytime after 3pm?",
+		sender_id: 1,
+		listing_id: 5
+	})
+
+	const m2 = await Message.create({
+		message_id: 2,
+		message_content: "Hey Dan. Sure! I can meet at 6pm today. I'm on the 7th floor. Wanna meet halfway? 6th floor",
+		sender_id: 2,
+		listing_id: 5
+	})
+
+	const m3 = await Message.create({
+		message_id: 3,
+		message_content: "Sounds great! See you then",
+		sender_id: 1,
+		listing_id: 5
+	})
+
+	const m4 = await Message.create({
+		message_id: 4,
+		message_content: "Hey dude, I got a problem. My dog just ate one of the jenga pieces",
+		sender_id: 2,
+		listing_id: 2
+	})
+
+	const m5 = await Message.create({
+		message_id: 5,
+		message_content: "I'm calling the police",
+		sender_id: 1,
+		listing_id: 2
+	})
+
+	////// REQUESTS ////////////////////////////////////////////
 
 	const r1 = await Request.create({
 		item_requested: "Spray Paint",

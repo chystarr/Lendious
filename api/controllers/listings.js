@@ -80,7 +80,7 @@ router.get("/:id", passport.isAuthenticated(), async (req,res) => {
 // maybe modify this so that building_id has to be a param in the body
 router.post("/", passport.isAuthenticated(), (req, res) => {
   //const {b_id} = req.params;
-  const { listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id, image } = req.body;
+  const { listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id} = req.body;
 
   const lender_id = req.user.user_id;
   const borrower_id = null;
