@@ -23,7 +23,7 @@ function LendItemPage() {
   let params = useParams();
 
   
-  useEffect(() => {
+  /* useEffect(() => {
     async function getData() {
       setLoading(true);
       try {
@@ -43,7 +43,7 @@ function LendItemPage() {
     return () => {
     };
   }, []);
-
+ */
 
   const handleChange = (input) => e => {
     if (input === "name"){
@@ -107,7 +107,7 @@ function LendItemPage() {
         },
         body: JSON.stringify(
           {
-            "listing_id":listing_id,
+            //"listing_id":listing_id,
             "name": name,
             "compensation" : compensation,
             "range_start": rstart,

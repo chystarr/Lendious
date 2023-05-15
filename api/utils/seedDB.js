@@ -65,7 +65,7 @@ const seedDB = async () => {
 	const association2 = await BuildingMembership.create({BuildingBuildingId: 3, UserUserId: 2 });
 
 	const l1 = await Listing.create({
-		listing_id: 1,
+		//listing_id: 1,
 		name:"The Game of Life",
 		compensation:10,
 		range_start:"04/17/23",
@@ -78,7 +78,7 @@ const seedDB = async () => {
 	})
 
 	const l2 = await Listing.create({
-		listing_id: 2,
+		//listing_id: 2,
 		name:"Jenga",
 		compensation:5,
 		range_start:"04/21/23",
@@ -91,7 +91,7 @@ const seedDB = async () => {
 	})
 
 	const l3 = await Listing.create({
-		listing_id: 3,
+		//listing_id: 3,
 		name:"Uno",
 		compensation:5,
 		range_start:"04/22/23",
@@ -104,7 +104,7 @@ const seedDB = async () => {
 	})
 
 	const l4 = await Listing.create({
-		listing_id: 4,
+		//listing_id: 4,
 		name:"5x Pine Plywood Panels",
 		compensation:0,
 		range_start:"04/22/23",
@@ -117,7 +117,7 @@ const seedDB = async () => {
 	})
 
 	const l5 = await Listing.create({
-		listing_id: 5,
+		//listing_id: 5,
 		name:"Harry Potter and The Chamber of Secrets",
 		compensation:10,
 		range_start:"04/20/23",
@@ -130,7 +130,7 @@ const seedDB = async () => {
 	})
 
 	const l6 = await Listing.create({
-		listing_id: 6,
+		//listing_id: 6,
 		name:"Structure and Interpretation of Computer Programs, Second Ed.",
 		compensation:0,
 		range_start:"04/20/23",

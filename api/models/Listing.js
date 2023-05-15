@@ -6,11 +6,6 @@ module.exports = (sequelize, DataTypes) => {
 
 	Listing.init(
 		{
-            listing_id: {
-				type: DataTypes.INTEGER,
-				autoIncrement: true,
-				primaryKey: true,
-			},
 			name: {
 				type: DataTypes.STRING,
 				notEmpty: true,
@@ -67,3 +62,9 @@ module.exports = (sequelize, DataTypes) => {
 
 	return Listing;
 };
+
+ {/*listing_id: {
+				type: DataTypes.INTEGER,
+				autoIncrement: true,
+				primaryKey: true,
+			},*/}

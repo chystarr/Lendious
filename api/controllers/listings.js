@@ -172,8 +172,9 @@ router.delete("/:id", passport.isAuthenticated(), async (req, res) => {
 
 router.get("/size", (req,res) => {
   console.log("inside the size route");
-  Listing.findAll({}).then((allPosts) => {
-    res.json(allPosts.length)
+  Listing.findAll().then((allPosts) => {
+    const size = allPosts.length;
+    res.json(size)
   });
 }) 
 
