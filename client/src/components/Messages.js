@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Message from "./Message.js";
 
 const Messages = ({ socket, listing_id }) => {
   const [messages, setMessages] = useState([]);
@@ -38,11 +39,9 @@ const Messages = ({ socket, listing_id }) => {
 
   return (
     <div>
-      <ul>
         {messages.map((message, index) => (
-          <li key={index}>{message.message_content}</li>
+          <Message key={index} content={message.message_content} />
         ))}
-      </ul>
     </div>
   );
 };
