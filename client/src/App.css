@@ -20,3 +20,16 @@
   .nav-link:hover {
     color: rgb(22, 101, 248); 
   }
+
+  html body {
+    background-color: #c5cdf8a1;
+  }
+
+  .btn-primary {
+    background-color: rgb(32, 112, 112);
+    color: white;
+  }
+
+  .navbar {
+    background-color: rgb(23, 11, 76);
+  }

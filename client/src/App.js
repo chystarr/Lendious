@@ -22,7 +22,7 @@ function Navigation(props) {
   
   // https://github.com/CUNYTechPrep/project-starter referenced for nav bar structure
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark shadow mb-3">
+    <nav className="navbar navbar-expand-sm navbar-dark shadow mb-3">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/listings">
           Lendious
