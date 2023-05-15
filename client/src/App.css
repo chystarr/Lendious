@@ -10,7 +10,7 @@
   }
   
   .nav-link {
-    color: #7CFC00; /*All links will be a light green*/
+    /*color: #7CFC00; /*All links will be a light green*/
     font-size: 1.2rem; 
     margin-right: 1rem; /*space the links*/
   }
@@ -18,5 +18,5 @@
   make link purple upon hovering
   */
   .nav-link:hover {
-    color: rgb(196, 65, 196); 
+    color: rgb(22, 101, 248); 
   }
