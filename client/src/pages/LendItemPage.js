@@ -161,6 +161,7 @@ function LendItemPage() {
 
       if (response.ok) {
         console.log("success");
+        setSuccess(true);
       } else {
         setError(true);
       }
