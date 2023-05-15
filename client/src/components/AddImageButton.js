@@ -23,8 +23,8 @@ function AddImageButton({ listing_id }) {
     if (loading) return <LoadingSpinner/>;
   return (
         <div className="row">
-            <div className="col">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imageModal">
+            <div className="col-10 col-md-8 col-lg-7 mt-3">
+                <button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#imageModal">
                 Add an image
                 </button>
                 
