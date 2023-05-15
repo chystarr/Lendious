@@ -20,6 +20,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// https://github.com/CUNYTechPrep/project-starter referenced for mounting controllers and building the app
 const logFormat = process.env.NODE_ENV === "production" ? "combined" : "dev";
 app.use(morgan(logFormat));
 

@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("../middlewares/authentication");
 const router = express.Router();
 const db = require("../models");
-const { Listing, ItemType } = db;
+const { Listing, ItemType, ListingImage } = db;
 
 // Routes
 // 
@@ -40,24 +40,6 @@ router.get("/", passport.isAuthenticated(), (req, res) => {
   Listing.findAll({}).then((allListings) => res.json(allListings));
 });
 
-/* router.get("/building/:id", passport.isAuthenticated(), async (req, res) => {
-  const { id } = req.params;
-  const buildingWithId = await Building.findByPk(id);
-  if (!buildingWithId) {
-    console.log("cant find building");
-    return res.sendStatus(404);
-  }
-  Listing.findAll({where: {building_id: id}}).then(listingsFromBuilding => {
-    if(!listingsFromBuilding)
-    {
-      console.log("inside empty findAll route")
-      res.status(200).send({});
-    }
-    res.json(listingsFromBuilding)
-  });
-}); */
-
-// should be from a certain building in addition to being of a certain type?
 router.get("/item-type/:id", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
   const typeWithId = await ItemType.findByPk(id);
@@ -98,12 +80,18 @@ router.get("/:id", passport.isAuthenticated(), async (req,res) => {
 // maybe modify this so that building_id has to be a param in the body
 router.post("/", passport.isAuthenticated(), (req, res) => {
   //const {b_id} = req.params;
-  const { listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id } = req.body;
+  const { listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, item_type_id, image } = req.body;
+
   const lender_id = req.user.user_id;
   const borrower_id = null;
   Listing.create({ listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, borrower_id, item_type_id })
   .then((newListing) => {
     res.status(201).json(newListing);
+    // than create a listingImage entry
+    //ListingImage.create({ listing_image_id, image, listing_id })
+    //.then((newListingImage) => {
+      //res.status(201).json(newListing, newListingImage);
+    //})
   })
   .catch((err) => {
     res.status(400).json(err);

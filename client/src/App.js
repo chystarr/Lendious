@@ -19,7 +19,8 @@ import PrivateRouteRequiresAuth from "./components/PrivateRouteRequiresAuth";
 function Navigation(props) {
   const location = useLocation();
   const disabled = location.pathname === '/buildings';
-
+  
+  // https://github.com/CUNYTechPrep/project-starter referenced for nav bar structure
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark shadow mb-3">
       <div className="container-fluid">

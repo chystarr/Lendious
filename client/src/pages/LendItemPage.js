@@ -13,7 +13,8 @@ function LendItemPage() {
   const [itemTypeID, setItemTypeID] = useState(0);
   const [confirm, setConfirm] = useState("");
   const [loading, setLoading] = useState(false);
-  
+  //const [imgFile, setImgFile] = useState();
+  //const [readyToSaveImage, setReadyToSaveImage] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const [listing_id, setListing_ID]=useState(0);
@@ -44,6 +45,41 @@ function LendItemPage() {
     };
   }, []);
 
+  /*
+  useEffect(() => {
+    async function getData() {
+      try {
+        const formData = new FormData();
+        formData.append("image", imgFile);
+        console.log(formData);
+
+        let response = await fetch("/api/listingImages/" + listing_id, {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "multipart/form-data", 
+          },
+          body: formData
+        });
+
+        if (response.ok) {
+          setSuccess(true);
+        } else {
+          setError(true);
+        }
+  
+      } catch(error){
+        console.error("Server error when adding listing image", error);
+        setError(true);
+      }
+    }
+
+    getData();
+
+    return () => {
+    };
+  }, [readyToSaveImage]);
+  */
 
   const handleChange = (input) => e => {
     if (input === "name"){
@@ -84,6 +120,9 @@ function LendItemPage() {
     } else if (input === "itype" && e.target.value !== "Choose...") {
       setItemTypeID(Number(e.target.value));
       console.log("itype id in state: " + itemTypeID);
+    } else if (input === "img" && e.target.files[0]) {
+      console.log(e.target.files[0]);
+      //setImgFile(e.target.files[0]);
     } else {
       setConfirm(e.target.value);
     }
@@ -115,21 +154,23 @@ function LendItemPage() {
             "condition" : condition,
             "item_description" : descr,
             "building_id" : params.building_id,
-            "item_type_id" : itemTypeID
+            "item_type_id" : itemTypeID,
           }
         ),
       });
 
       if (response.ok) {
-        setSuccess(true);
+        console.log("success");
       } else {
         setError(true);
       }
 
     } catch(error){
-      console.error("Server error when creating lending", error);
+      console.error("Server error when creating listing", error);
       setError(true);
     }
+
+
 
   };
 
@@ -205,6 +246,14 @@ function LendItemPage() {
             <input type="date" class="form-control" id="rend" onChange={handleChange("rend")}/>
           </div>
         </div>
+
+      {/* Image upload 
+      <div className="row">
+        <div className="col text-start">
+          <label for="img">Upload an image</label>
+          <input type="file" accept="image/*" multiple={false} class="form-control" id="img" onChange={handleChange("img")}/>
+        </div>
+      </div> */}
 
         {/*Description*/}
         <div className="row">
