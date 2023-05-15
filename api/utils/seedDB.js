@@ -143,15 +143,15 @@ const seedDB = async () => {
 	})
 
 	const r1 = await Request.create({
-		item_requested: "Rope",
-		content:"Test request",
+		item_requested: "Spray Paint",
+		content:"Gonna tag the mayors office, hmu",
 		building_id: 3,
 		requester_id: 1
 	})
 
 	const r2 = await Request.create({
-		item_requested: "Test Item",
-		content:"Test request 2",
+		item_requested: "Paper Plates",
+		content:"Need some paper plates for a party I'm throwing with the boys. Will wash and return them, dw.",
 		building_id: 3,
 		requester_id: 2
 	})

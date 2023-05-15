@@ -21,6 +21,9 @@ const { Listing, ItemType } = db;
 // GET /api/listings/borrowing
 // Get all listings where the user is the one borrowing them
 //
+// GET /api/listings/:id
+// Get the data about a certain listing
+//
 // POST /api/listings
 // Add a new listing as the lender
 //
@@ -78,6 +81,15 @@ router.get("/borrowing", passport.isAuthenticated(), async (req,res) => {
   const id = req.user.user_id;
   //find all listings where listings borrower_id === passed in user_id
   Listing.findAll({where: {borrower_id: id}}).then((allUserListings) => {
+    res.json(allUserListings)
+  });
+})
+
+router.get("/:id", passport.isAuthenticated(), async (req,res) => {
+  //take the passed in user_id
+  const {id} = req.params;
+  //find all listings where listings borrower_id === passed in user_id
+  Listing.findByPk(id).then((allUserListings) => {
     res.json(allUserListings)
   });
 })

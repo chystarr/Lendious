@@ -15,11 +15,6 @@ import RequestsPage from "./pages/RequestsPage";
 import "./App.css";
 import SignUpButton from "./components/SignUpButton";
 import PrivateRouteRequiresAuth from "./components/PrivateRouteRequiresAuth";
-/*
-// Socket.IO setup (based on documentation)
-import { io } from "socket.io-client";
-const socket = io.connect('http://localhost:4000');
-*/
 
 function Navigation(props) {
   const location = useLocation();
