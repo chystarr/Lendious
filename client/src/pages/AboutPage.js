@@ -4,33 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "../css/AboutPage.css";
 import lendiousImage from '../images/lendious_icon.png';
 import helpingHands from '../images/lending_hands.jpeg';
-//Button takes you to signup page
-function LearnMore(props) {
-  const buttonStyle = {
-    fontFamily: 'Lucida Console, monospace',
-    fontSize: '16px',
-    backgroundColor: '#FFFF8A',
-    color: 'black',
-    cursor: 'pointer',
-    textDecoration: 'none'
-  };
-  const hoverStyle = {
-    textDecoration: 'underline'
-  };
-
-  return (  
-    <Link to='/signup'>  
-    <button className="btn" style={buttonStyle} onClick={props.onClick}>
-      Sign up now!
-    </button></Link>
-  );
-}
-
-
-
-
+import {useAuth} from "../context/AuthContext"
 
 function LendiousDescription() {
+  const userContext = useAuth();
   //animate so that the text fades in when the user enters the page
   const [fadeIn, setFadeIn] = useState(false);
   useEffect(() => {
@@ -68,7 +45,20 @@ function LendiousDescription() {
         Get access to a diverse range of objects without breaking the bank. With this platform, you can lend 
         and borrow as you please while forming tighter community connections.
       </p>
-      <LearnMore />
+      {userContext.isAuthenticated === true ? 
+      <Link to='/listings'>  
+        <button className="btn btn-light">
+          See Listings!
+        </button>
+      </Link>
+    :
+      <Link to='/signup'>  
+        <button className="btn">
+          Sign up now!
+        </button>
+      </Link>
+   
+    }
     </div>
   </div>
   );
