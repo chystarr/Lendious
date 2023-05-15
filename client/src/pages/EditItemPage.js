@@ -159,6 +159,7 @@ function EditItemPage() {
       <div className="row justify-content-center ps-5 pe-5"> 
         <div className="col text-start">
           <input type="text" className="form-control" id="confirm" placeholder="Confirm" onChange={handleChange("confirm")}/>
+          <small class="form-text text-muted">Type "Confirm" to indicate that you acknowledge the above.</small>
         </div>
       </div>
       
