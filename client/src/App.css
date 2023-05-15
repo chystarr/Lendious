@@ -15,7 +15,7 @@
     margin-right: 1rem; /*space the links*/
   }
   /*
-  make link purple upon hovering
+  make link blue upon hovering
   */
   .nav-link:hover {
     color: rgb(22, 101, 248); 
