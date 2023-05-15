@@ -103,9 +103,9 @@ function AddRequestButton() {
                       {/*Modal Body*/}
                       <div class="modal-body">
                           {/*Request item name*/}
-                          <input type="text" className="form-control rounded" placeholder= "Item" name = "item-name" onChange={handleChange}/>
+                          <input type="text" className="form-control rounded" placeholder= "Item Name" name = "item-name" onChange={handleChange}/>
                           {/*Request body*/}
-                          <textarea type="text-area" class="form-control rounded" name="req-body" onChange={handleChange}/>
+                          <textarea type="text-area" className="form-control rounded mt-3" name="req-body" onChange={handleChange}/>
                       </div>
                       {/*Modal Footer*/}
                       <div class="modal-footer">
