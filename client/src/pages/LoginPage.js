@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import lendiousImage from '../images/lendious_icon.png';
 import "../css/LoginPage.css";
@@ -93,8 +93,11 @@ function LoginPage() {
                   onChange={fieldChanged("password")}
                 />
                 <button type="submit" className="blue_btn"> Sign-in </button>
+                <div className="sign_up">
+                  Don't have an account? <Link to="/signup">Sign up</Link>
+                </div>
               </div>
-            </form>  
+            </form>
           </div>
         </div>
       </div>
