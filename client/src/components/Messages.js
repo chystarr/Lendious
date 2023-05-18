@@ -63,9 +63,9 @@ const Messages = ({ socket, listing_id }) => {
 
     return () => socket.off("msg");
   }, [socket]);
-  
+
   return (
-    <div className="row">
+    <div className="overflow-scroll">
       {messages.map((message, index) => (
         <Message key={index} message={message} />
       ))}

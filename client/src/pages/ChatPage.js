@@ -20,7 +20,7 @@ const ChatPage = () => {
   }, []);
   
   return (
-    <div className="container">
+    <div className="min-vh-75 d-flex flex-column justify-content-between">
       <Messages socket={socket} listing_id={params.listing_id} />
       <MessageInput socket={socket} listing_id={params.listing_id} />
     </div>

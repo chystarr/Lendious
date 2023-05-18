@@ -62,7 +62,7 @@ const MessageInput = ({ socket, listing_id }) => {
   };
 
   return (
-    <div className="row">
+    <div>
         <form onSubmit={handleSubmit}>
           <div className="input-group m-3">
             <input
