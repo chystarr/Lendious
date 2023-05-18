@@ -1,10 +1,9 @@
 /*==================================================
 /utils/seedDB.js
 
-It seeds the database with several buildings and the set amount of item types.
+It seeds the database with several buildings, users, listings, and requests.
 ==================================================*/
-//const { Building } = require('../models/Building');  // Import Building model
-//const { ItemType } = require('../models/ItemType');    // Import ItemType model
+
 
 //seeding the db only work when import is written in this format
 const {Building, ItemType, User, sequelize, Listing, Request, Message} = require("../models");

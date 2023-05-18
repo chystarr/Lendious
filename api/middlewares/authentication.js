@@ -11,8 +11,7 @@ function passwordsMatch(submittedPassword, storedPasswordHash) {
 /*
   The following code runs at login time.
   The usernameField and passwordField options refer to the HTTP requests
-  body parameter names. I've set this to look for an `email` parameter,
-  but you may prefer to use a `username` parameter instead of an email.
+  body parameter names.
   BEST PRACTICE: don't state why login failed to the user.
 */
 passport.use(
