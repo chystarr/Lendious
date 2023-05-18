@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 const MessageInput = ({ socket, listing_id }) => {
   const [name, setName] = useState("");
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     async function getData () {
@@ -28,6 +29,8 @@ const MessageInput = ({ socket, listing_id }) => {
     const msgJson = Object.fromEntries(msgData.entries());
     console.log(msgJson);
     console.log(listing_id);
+
+    setInput("");
 
     try {
       let response = await fetch("/api/messages", {
@@ -62,7 +65,10 @@ const MessageInput = ({ socket, listing_id }) => {
     <div className="row">
         <form onSubmit={handleSubmit}>
           <div className="input-group m-3">
-            <input type="text" className="form-control" name="msgInput" />
+            <input
+              type="text" className="form-control" name="msgInput"
+              value={input} onChange={e => {setInput(e.target.value)}}
+            />
             <div className="input-group-append">
               <button className="btn btn-outline-secondary" type="submit">Send</button>
             </div>
