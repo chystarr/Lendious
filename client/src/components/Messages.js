@@ -65,10 +65,10 @@ const Messages = ({ socket, listing_id }) => {
   }, [socket]);
 
   return (
-    <div>
-        {messages.map((message, index) => (
-          <Message key={index} message={message} />
-        ))}
+    <div className="overflow-scroll">
+      {messages.map((message, index) => (
+        <Message key={index} message={message} />
+      ))}
     </div>
   );
 };
