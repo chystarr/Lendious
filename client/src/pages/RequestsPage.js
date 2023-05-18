@@ -46,14 +46,6 @@ function RequestsPage() {
           <p className="mt-3">
             No requests 
           </p>
-          <p>
-            <span className="text-primary"> Make</span> a request.
-          </p>
-        </div>
-      </div>
-      <div className="row text-center">
-        <div className="col">
-          <AddRequestButton/>
         </div>
       </div>
     </>
