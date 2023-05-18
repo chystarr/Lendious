@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import EditListingButton from "../components/EditListingButton";
 import AddImageButton from "../components/AddImageButton";
 import DeleteListingButton from "./DeleteListingButton";
+import "../css/ListingsPage.css"
 
 function MyItemCard(props) {
   // !!!!!!!
@@ -16,7 +17,7 @@ function MyItemCard(props) {
     return (
       <div className="col-10 col-md-8 col-lg-7 mt-3">
           <div className="card shadow">
-            <div className="card-body">
+            <div className="card-body customBorder">
               <div className="row">
                   <div className="col">
                       <div className="row">
