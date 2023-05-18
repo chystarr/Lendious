@@ -27,6 +27,7 @@ const MessageInput = ({ socket, listing_id }) => {
     const msgData = new FormData(form);
     const msgJson = Object.fromEntries(msgData.entries());
     console.log(msgJson);
+    console.log(listing_id);
 
     try {
       let response = await fetch("/api/messages", {
@@ -38,7 +39,7 @@ const MessageInput = ({ socket, listing_id }) => {
         body: JSON.stringify(
           {
             "message_content": msgJson.msgInput,
-            "listing_id": listing_id
+            "listing_id": listing_id,
           }
         ),
       });
