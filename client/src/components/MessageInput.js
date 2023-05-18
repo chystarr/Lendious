@@ -59,9 +59,9 @@ const MessageInput = ({ socket, listing_id }) => {
   };
 
   return (
-    <div>
+    <div className="row">
         <form onSubmit={handleSubmit}>
-          <div className="input-group mb-3 fixed-bottom">
+          <div className="input-group m-3">
             <input type="text" className="form-control" name="msgInput" />
             <div className="input-group-append">
               <button className="btn btn-outline-secondary" type="submit">Send</button>

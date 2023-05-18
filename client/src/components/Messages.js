@@ -63,12 +63,12 @@ const Messages = ({ socket, listing_id }) => {
 
     return () => socket.off("msg");
   }, [socket]);
-
+  
   return (
-    <div>
-        {messages.map((message, index) => (
-          <Message key={index} message={message} />
-        ))}
+    <div className="row">
+      {messages.map((message, index) => (
+        <Message key={index} message={message} />
+      ))}
     </div>
   );
 };

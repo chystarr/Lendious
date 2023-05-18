@@ -20,7 +20,7 @@ const ChatPage = () => {
   }, []);
   
   return (
-    <div>
+    <div className="container">
       <Messages socket={socket} listing_id={params.listing_id} />
       <MessageInput socket={socket} listing_id={params.listing_id} />
     </div>
