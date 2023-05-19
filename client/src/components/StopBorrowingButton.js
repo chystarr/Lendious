@@ -6,7 +6,7 @@ function StopBorrowingButton({listing_id}) {
   const handleClick = async (event) => {
     event.preventDefault();
     try {
-      let response = await fetch("/api/listings/" + listing_id + "/stop-borrowing", {
+      let listingResponse = await fetch("/api/listings/" + listing_id + "/stop-borrowing", {
         method: "PATCH",
         credentials: "include",
         headers: {
@@ -14,7 +14,12 @@ function StopBorrowingButton({listing_id}) {
         }
       });
 
-      if (!response.ok) {
+      let borrowingResponse = await fetch("/api/messages/listing/" + listing_id, {
+        method: "DELETE",
+        credentials: "include",
+      });
+
+      if (!listingResponse.ok || !borrowingResponse.ok) {
         setError(true);
       } else {
         // Reload the page
