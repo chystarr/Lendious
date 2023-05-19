@@ -30,6 +30,9 @@ const { Listing, ItemType, ListingImage } = db;
 // PATCH /api/listings/:id/borrow
 // Borrow a listing
 //
+// PATCH /api/listings/:id/stop-borrowing
+// Stop borrowing a listing
+//
 // PATCH /api/listings/:id/edit
 // Edit a listing
 //
@@ -110,6 +113,21 @@ router.patch("/:id/borrow", passport.isAuthenticated(), async (req, res) => {
   }
 
   listingWithId.borrower_id = req.user.user_id;
+  listingWithId.save().then(updatedListing => {
+    res.json(updatedListing);
+  }).catch(err => {
+    res.status(400).json(err);
+  });
+});
+
+router.patch("/:id/stop-borrowing", passport.isAuthenticated(), async (req, res) => {
+  const { id } = req.params;
+  const listingWithId = await Listing.findByPk(id);
+  if (!listingWithId) {
+    return res.sendStatus(404);
+  }
+
+  listingWithId.borrower_id = null;
   listingWithId.save().then(updatedListing => {
     res.json(updatedListing);
   }).catch(err => {
