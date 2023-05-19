@@ -12,6 +12,9 @@ const { Message, Listing } = db;
 //
 // POST /api/messages
 // Add a new message
+//
+// DELETE /api/messages/listing/:id
+// Delete all messages associated with a certain listing
 
 router.get("/:id", passport.isAuthenticated(), async (req, res) => {
   const { id } = req.params;
@@ -33,6 +36,18 @@ router.post("/", passport.isAuthenticated(), (req, res) => {
   .catch((err) => {
     res.status(400).json(err);
   });
+});
+
+router.delete("/listing/:id", passport.isAuthenticated(), async (req, res) => {
+  const { id } = req.params;
+  const listingWithId = await Listing.findByPk(id);
+  if (!listingWithId) {
+    return res.sendStatus(404);
+  }
+  Message.findAll({where: {listing_id: id}}).then(messagesAboutListing => messagesAboutListing.forEach(messageAboutListing => {
+    messageAboutListing.destroy();
+  }));
+  res.sendStatus(204);
 });
 
 module.exports = router;
