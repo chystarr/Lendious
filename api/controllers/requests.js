@@ -10,14 +10,10 @@ const { Request, User, Building } = db;
 //    PUT    /api/reqeusts/:id
 //    DELETE /api/requests/:id
 //
-// The full URL's for these routes are composed by combining the
-// prefixes used to load the controller files.
-//    /api comes from the file ../app.js
-//    /micro_posts comes from the file ./Request.js
 
 router.get("/", passport.isAuthenticated(), async (req, res) => {
     const userId = req.user.user_id;
-    //const user = await User.findByPk(userId);
+   
     const buildingid = await Building.findOne({include: {model: User, where: {user_id: userId}}})
                       .then(buildingInfo => buildingInfo.building_id);
     Request.findAll({where:{building_id: buildingid}}).then((allRequests) => res.json(allRequests));

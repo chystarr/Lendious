@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import AddImageButton from "../components/AddImageButton";
 import DeleteListingButton from "./DeleteListingButton";
 import StopBorrowingButton from "./StopBorrowingButton";
 import {useAuth} from "../context/AuthContext"
+import "../css/ListingsPage.css"
 
 function MyItemCard(props) {
   const userContext = useAuth();

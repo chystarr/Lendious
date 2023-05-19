@@ -1,4 +1,8 @@
 import React, {useState} from "react";
+/*
+// Font Awesome docs used for getting-started: https://fontawesome.com/docs/web/setup/get-started
+// Font Awesome docs used for sizing/styling: https://fontawesome.com/docs/web/style/size
+*/
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
 

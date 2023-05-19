@@ -110,7 +110,8 @@ function AddRequestButton() {
                       {/*Modal Footer*/}
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          <button type="button" onClick={handleSubmit} class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                          <button type="button" onClick={handleSubmit} class="btn btn-primary" data-bs-dismiss="modal" 
+                            disabled={name === "" || request === ""}>Submit</button>
                       </div>
                       </div>
                   </div>

@@ -1,10 +1,9 @@
 /*==================================================
 /utils/seedDB.js
 
-It seeds the database with several buildings and the set amount of item types.
+It seeds the database with several buildings, users, listings, and requests.
 ==================================================*/
-//const { Building } = require('../models/Building');  // Import Building model
-//const { ItemType } = require('../models/ItemType');    // Import ItemType model
+
 
 //seeding the db only work when import is written in this format
 const {Building, ItemType, User, sequelize, Listing, Request, Message} = require("../models");
@@ -162,35 +161,35 @@ const seedDB = async () => {
 	
 	/////// MESSAGES //////////////////////////////////////////
 	const m1 = await Message.create({
-		message_id: 1,
+		//message_id: 1,
 		message_content: "Hi, This is Dan from room 540. Can we arrange a time to meet today anytime after 3pm?",
 		sender_id: 1,
 		listing_id: 5
 	})
 
 	const m2 = await Message.create({
-		message_id: 2,
+		//message_id: 2,
 		message_content: "Hey Dan. Sure! I can meet at 6pm today. I'm on the 7th floor. Wanna meet halfway? 6th floor",
 		sender_id: 2,
 		listing_id: 5
 	})
 
 	const m3 = await Message.create({
-		message_id: 3,
+		//message_id: 3,
 		message_content: "Sounds great! See you then",
 		sender_id: 1,
 		listing_id: 5
 	})
 
 	const m4 = await Message.create({
-		message_id: 4,
+		//message_id: 4,
 		message_content: "Hey dude, I got a problem. My dog just ate one of the jenga pieces",
 		sender_id: 2,
 		listing_id: 2
 	})
 
 	const m5 = await Message.create({
-		message_id: 5,
+		//message_id: 5,
 		message_content: "I'm calling the police",
 		sender_id: 1,
 		listing_id: 2

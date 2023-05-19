@@ -1,4 +1,8 @@
-
+.customBorder {
+  border-color: #9966FF; /* Replace with your desired color */
+  border-style: solid; /* Replace with desired border style (e.g., dashed, dotted, etc.) */
+  border-width: 1px; /* Replace with desired border width */
+}
 /*
   .text-center {
     text-align: center;
