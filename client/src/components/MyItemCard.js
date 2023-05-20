@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChessBoard, faBook, faToolbox } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import EditListingButton from "../components/EditListingButton";
-import AddImageButton from "../components/AddImageButton";
 import DeleteListingButton from "./DeleteListingButton";
 import StopBorrowingButton from "./StopBorrowingButton";
 import {useAuth} from "../context/AuthContext"
@@ -167,9 +166,6 @@ function MyItemCard(props) {
               <div className="row">
                   <div className="col d-flex justify-content-center">
                     <EditListingButton listing_id={props.listing_id}/>
-                  </div>
-                  <div className="col d-flex justify-content-center">
-                    <AddImageButton listing_id={props.listing_id}/>
                   </div>
                   <div className="col d-flex justify-content-center">
                     <DeleteListingButton listing_id={props.listing_id}/>

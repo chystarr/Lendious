@@ -39,6 +39,7 @@ function AddImageButton({ listing_id }) {
                     {/*Modal Body*/}
                     <div class="modal-body">
                         <input type="file" accept="image/*" multiple={false} class="form-control file" name="upload-file" onChange={handleChange}/>
+                        <small class="form-text text-muted"> This feature is incomplete; while you can select an image from your files to submit, it won't be stored in the database </small>
                     </div>
                     {/*Modal Footer*/}
                     <div class="modal-footer">
