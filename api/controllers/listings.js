@@ -69,16 +69,6 @@ router.get("/borrowing", passport.isAuthenticated(), async (req,res) => {
     res.json(allUserListings)
   });
 })
-/*
-router.get("/:id", passport.isAuthenticated(), async (req,res) => {
-  //take the passed in user_id
-  const {id} = req.params;
-  //find all listings where listings borrower_id === passed in user_id
-  Listing.findByPk(id).then((allUserListings) => {
-    res.json(allUserListings)
-  });
-})
-*/
 
 // maybe modify this so that building_id has to be a param in the body
 router.post("/", passport.isAuthenticated(), (req, res) => {
@@ -90,11 +80,6 @@ router.post("/", passport.isAuthenticated(), (req, res) => {
   Listing.create({ listing_id, name, compensation, range_start, range_end, condition, item_description, building_id, lender_id, borrower_id, item_type_id })
   .then((newListing) => {
     res.status(201).json(newListing);
-    // than create a listingImage entry
-    //ListingImage.create({ listing_image_id, image, listing_id })
-    //.then((newListingImage) => {
-      //res.status(201).json(newListing, newListingImage);
-    //})
   })
   .catch((err) => {
     res.status(400).json(err);
